@@ -1,0 +1,90 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Title TextView -->
+    <TextView
+        android:id="@+id/congratulationsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="Congratulations username!"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <!-- Sub TextView -->
+    <TextView
+        android:id="@+id/subText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="Level 2 easy complete at *location*"
+        android:textColor="#000000"
+        android:textSize="16sp" />
+
+    <!-- Star Image (can be replaced with a drawable) -->
+    <ImageView
+        android:id="@+id/starIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="big star"
+        app:srcCompat="@drawable/star" />
+
+    <!-- Star Progress TextView -->
+    <TextView
+        android:id="@+id/starProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:gravity="center"
+        android:text="3/27 total stars achieved"
+        android:textColor="#000000"
+        android:textSize="16sp" />
+
+    <!-- Buttons Layout -->
+    <LinearLayout
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="391dp"
+        android:layout_height="142dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <!-- Try in Free Play Button -->
+        <Button
+            android:id="@+id/freePlayButton"
+            android:layout_width="141dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:background="@color/button"
+            android:drawableStart="@drawable/star"
+            android:drawablePadding="8dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text="Try in free play"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <!-- Next Level Button without the arrow -->
+        <Button
+            android:id="@+id/nextLevelButton"
+            android:layout_width="141dp"
+            android:layout_height="wrap_content"
+            android:background="@color/button"
+            android:text="Next Level"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</LinearLayout>
+
+
+
