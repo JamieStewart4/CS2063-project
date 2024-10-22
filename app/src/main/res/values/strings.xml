@@ -3,4 +3,11 @@
     <string name="play_button">PLAY!</string>
     <string name="puzzle_button">Puzzle Mode</string>
     <string name="free_play_button">Free Play</string>
+    <string name="select_mode_title">Select Mode</string>
+    <string name="congratulations_text">Congratulations Username!</string>
+    <string name="congratulations_info">Level 2 (Easy) complete.</string>
+    <string name="star_progress">2/27 total stars achieved.</string>
+    <string name="try_in_free_play">Try Free Play</string>
+    <string name="next_level">Next Level</string>
+    <string name="temp_solve">Solve</string>
 </resources>

@@ -9,4 +9,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:srcCompat="@drawable/screenshot_2024_10_21_at_2_42_45_pm" />
+
+    <Button
+        android:id="@+id/temp_solve_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/temp_solve" />
 </RelativeLayout>

@@ -15,5 +15,11 @@ class SelectMode: AppCompatActivity() {
             val intent = Intent(this@SelectMode, PuzzleMode::class.java)
             startActivity(intent)
         }
+
+        // Back button
+        val backButton = findViewById<Button>(R.id.back_button)
+        backButton.setOnClickListener {
+            finish()
+        }
     }
 }

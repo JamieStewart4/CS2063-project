@@ -5,4 +5,5 @@
     <color name="button">#1d3557</color>
     <color name="alternate_button">#e63946</color>
     <color name="background">#F1FAEE</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>

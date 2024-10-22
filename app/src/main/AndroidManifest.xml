@@ -13,6 +13,11 @@
         android:theme="@style/Theme.CurlingClubChampions"
         tools:targetApi="31">
         <activity
+            android:name=".PuzzleComplete"
+            android:exported="false">
+
+        </activity>
+        <activity
             android:name=".SelectMode"
             android:exported="false">
 
