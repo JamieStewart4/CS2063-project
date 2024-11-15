@@ -16,6 +16,12 @@ class SelectMode: AppCompatActivity() {
             startActivity(intent)
         }
 
+        val puzzleCreatorButton = findViewById<Button>(R.id.free_play_button)
+        puzzleCreatorButton.setOnClickListener {
+            val intent = Intent(this@SelectMode, PuzzleCreator::class.java)
+            startActivity(intent)
+        }
+
         // Back button
         val backButton = findViewById<Button>(R.id.back_button)
         backButton.setOnClickListener {

@@ -18,6 +18,11 @@
 
         </activity>
         <activity
+            android:name=".PuzzleCreator"
+            android:exported="false">
+
+        </activity>
+        <activity
             android:name=".SelectMode"
             android:exported="false">
 
