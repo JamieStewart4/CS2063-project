@@ -1,7 +1,6 @@
 package com.example.curlingclubchampions.Rock
 
 import android.content.Context
-import android.util.Log
 import com.google.gson.Gson
 
 
@@ -10,10 +9,10 @@ class RockReader {
     // Rock object constructor
     // color = 0 -> Red
     // color = 1 -> Yellow
-    data class Rock (
+    data class Rock(
         var colour: Colour,
-        var x: Float,
-        var y: Float
+        var x: Double,
+        var y: Double
     )
 
     enum class Colour {
