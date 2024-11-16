@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
         val playButton = findViewById<Button>(R.id.play_button)
         playButton.setOnClickListener {
-            val intent = Intent(this@MainActivity, SelectMode::class.java)
+            val intent = Intent(this@MainActivity, PuzzleSelect::class.java)
             startActivity(intent)
         }
     }
