@@ -51,6 +51,7 @@ class PuzzleMode: AppCompatActivity() {
             Log.i("PuzzleMode", "Layout NOT NULL!!!!")
         }
 
+        // Loading puzzles
         val puzzleId = intent.getIntExtra("PUZZLE_ID", -1)
         if (puzzleId == -1) {
             Log.e("PuzzleMode", "Invalid puzzle ID received!")
@@ -70,7 +71,7 @@ class PuzzleMode: AppCompatActivity() {
             }
         }
 
-        // Temp solve button for demo
+        // Solve button for demo
         val solveButton = findViewById<Button>(R.id.temp_solve_button)
         solveButton.setOnClickListener {
             val intent = Intent(this@PuzzleMode, PuzzleComplete::class.java)
@@ -121,16 +122,9 @@ class PuzzleMode: AppCompatActivity() {
 
     // Returns boolean result for whether a rock will intersect another rock
     fun rockHitTest(x: Double, y: Double): Boolean {
-        // Get current rock bounding box from coordinates
-
-        val moveRockLeft = x
-        val moveRockRight = x + rockWidth
-        val moveRockTop = y
-        val moveRockBottom = y + rockHeight
-
         // Check if rock hits any rock in list
         for (rock in rockList) {
-            /*val rockX = rock.x
+            val rockX = rock.x
             val rockY = rock.y
 
             val rockCircRadius = rockWidth / 2 // padding for rock in image
@@ -140,17 +134,8 @@ class PuzzleMode: AppCompatActivity() {
 
             val distance = sqrt(dx.pow(2) + dy.pow(2))
             Log.i("RockHitTest", "distance = $distance, rockCircRadius = $rockCircRadius")
-            if (distance < rockCircRadius) return true*/
-
-            val rockLeft = rock.x
-            val rockTop = rock.y
-            val rockRight = rock.x + rockWidth
-            val rockBottom = rock.y + rockHeight
-
-            val horizontalOverlap = moveRockRight > rockLeft && moveRockLeft < rockRight
-            val verticalOverlap = moveRockBottom > rockTop && moveRockTop < rockBottom
-
-            if (horizontalOverlap && verticalOverlap) return true
+            // Collision if distance between centers is less than sum of radius's - margin of rock image
+            if (distance < rockCircRadius * 2 - 20) return true
         }
 
         return false
@@ -235,9 +220,13 @@ class PuzzleMode: AppCompatActivity() {
         ): Boolean {
             if (isDragging) {
                 Log.i("MyGestureListener", "distanceX = $distanceX, distanceY = $distanceY")
-                if (!rockHitTest((moveRockView.x - distanceX).toDouble(), (moveRockView.y - distanceY).toDouble())) {
+                val dx = moveRockView.x - distanceX
+                val dy = moveRockView.y - distanceY
+                if (!rockHitTest(dx.toDouble(), dy.toDouble()) && rockInBoundsTest(dx.toDouble(), dy.toDouble())) {
                     moveRockView.x -= distanceX
                     moveRockView.y -= distanceY
+                } else {
+                    isDragging = false
                 }
             }
             return true
