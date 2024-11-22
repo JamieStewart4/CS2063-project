@@ -12,4 +12,6 @@
     <string name="next_level">Next Level</string>
     <string name="temp_solve">Solve</string>
     <string name="creator_save">Save</string>
+    <string name="creator_switch_color">Switch Color</string>
+    <string name="creator_remove_rocks_mode">Remove Rocks</string>
 </resources>
