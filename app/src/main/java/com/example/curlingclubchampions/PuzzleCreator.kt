@@ -57,7 +57,7 @@ class PuzzleCreator : AppCompatActivity() {
                 val y = event.y
 
                 // Create a new Rock object with tapped coordinates
-                val newRock = RockReader.Rock(nextRockColor, x.toFloat(), y.toFloat())
+                val newRock = RockReader.Rock(nextRockColor, x.toDouble(), y.toDouble())
                 rockList.add(newRock)
 
                 // Toggle the color for the next rock
