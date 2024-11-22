@@ -90,7 +90,7 @@
         <!-- Next Level Button without the arrow -->
 
         <Button
-            android:id="@+id/freePlayButton"
+            android:id="@+id/puzzleCreatorButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
