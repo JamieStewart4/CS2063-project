@@ -4,6 +4,7 @@
     <string name="puzzle_button">Puzzle Mode</string>
     <string name="free_play_button">Free Play</string>
     <string name="select_mode_title">Select Mode</string>
+    <string name="puzzle_select_title">Select Puzzle</string>
     <string name="congratulations_text">Congratulations Username!</string>
     <string name="congratulations_info">Level 2 (Easy) complete.</string>
     <string name="star_progress">2/27 total stars achieved.</string>
