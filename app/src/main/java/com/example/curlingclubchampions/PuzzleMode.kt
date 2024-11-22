@@ -51,6 +51,25 @@ class PuzzleMode: AppCompatActivity() {
             Log.i("PuzzleMode", "Layout NOT NULL!!!!")
         }
 
+        val puzzleId = intent.getIntExtra("PUZZLE_ID", -1)
+        if (puzzleId == -1) {
+            Log.e("PuzzleMode", "Invalid puzzle ID received!")
+            finish()
+            return
+        }
+
+        Log.i("PuzzleMode", "Loading puzzle ID: $puzzleId")
+
+        val jsonResourceId = when (puzzleId) {
+            1 -> R.raw.level_1
+            //ADD LEVELS AS WE CREATE THEM
+            else -> {
+                Log.e("PuzzleMode", "No JSON file mapped for puzzle ID: $puzzleId")
+                finish()
+                return
+            }
+        }
+
         // Temp solve button for demo
         val solveButton = findViewById<Button>(R.id.temp_solve_button)
         solveButton.setOnClickListener {
@@ -60,7 +79,7 @@ class PuzzleMode: AppCompatActivity() {
         }
 
         val rockReader = RockReader()
-        val jsonString = rockReader.readJSON(this, R.raw.level_1)
+        val jsonString = rockReader.readJSON(this, jsonResourceId)
         rockList = rockReader.parseJSONToList(jsonString)
 
         redRockDrawable = getDrawable(R.drawable.red_rock)
