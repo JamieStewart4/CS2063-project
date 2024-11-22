@@ -23,7 +23,7 @@
 
         </activity>
         <activity
-            android:name=".SelectMode"
+            android:name=".PuzzleSelect"
             android:exported="false">
 
         </activity>

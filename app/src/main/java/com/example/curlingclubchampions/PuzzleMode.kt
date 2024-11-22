@@ -1,5 +1,6 @@
 package com.example.curlingclubchampions
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
@@ -19,6 +20,11 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import kotlin.math.pow
 import kotlin.math.sqrt
+
+val Context.displayWidth: Int
+    get() = resources.displayMetrics.widthPixels
+val Context.displayHeight: Int
+    get() = resources.displayMetrics.heightPixels
 
 class PuzzleMode: AppCompatActivity() {
     private lateinit var gestureDetector: GestureDetector
@@ -131,6 +137,21 @@ class PuzzleMode: AppCompatActivity() {
         return false
     }
 
+    fun rockInBoundsTest(x: Double, y: Double): Boolean {
+        // Left and right bounds check
+        if (x < rockWidth / 2 || x > displayWidth - rockWidth / 2) {
+            Log.i("PuzzleMode", "rockInBoundsTest failed x bounds check: x = $x, y = $y")
+            return false
+        }
+        // Up and down bounds check
+        if (y < rockHeight / 2 || y > displayHeight - rockHeight / 2) {
+            Log.i("PuzzleMode", "rockInBoundsTest failed y bounds check: x = $x, y = $y")
+            return false
+        }
+        return true
+    }
+
+
     override fun onTouchEvent(event: MotionEvent): Boolean {
         // Send drag events to gesture detector
         if (gestureDetector.onTouchEvent(event)) {
@@ -146,16 +167,20 @@ class PuzzleMode: AppCompatActivity() {
             val location = IntArray(2)
             layout.getLocationOnScreen(location)
 
+            // Offset of view from corner
             val offsetX = location[0]
             val offsetY = location[1]
 
+            // Offset of position centered on finger position
             val newX = event.rawX - offsetX - rockWidth / 2
             val newY = event.rawY - offsetY - rockHeight / 2
-            // Only move if not intersecting with rock
-            if (!rockHitTest(newX.toDouble(), newY.toDouble())) {
+            // Only move if not intersecting with rock and in bounds
+            if (!rockHitTest(newX.toDouble(), newY.toDouble()) && rockInBoundsTest(newX.toDouble(), newY.toDouble())) {
                 moveRockView.x = newX
                 moveRockView.y = newY
             }
+            Log.i("PuzzleMode", "rockHitTest: ${rockHitTest(newX.toDouble(), newY.toDouble())}")
+            Log.i("PuzzleMode", "rockInBoundsTest: ${rockInBoundsTest(newX.toDouble(), newY.toDouble())}")
             return true
         }
         return super.onTouchEvent(event)
@@ -191,9 +216,10 @@ class PuzzleMode: AppCompatActivity() {
         ): Boolean {
             if (isDragging) {
                 Log.i("MyGestureListener", "distanceX = $distanceX, distanceY = $distanceY")
-                if (!rockHitTest((moveRockView.x - distanceX).toDouble(), (moveRockView.y - distanceY).toDouble()))
-                moveRockView.x -= distanceX
-                moveRockView.y -= distanceY
+                if (!rockHitTest((moveRockView.x - distanceX).toDouble(), (moveRockView.y - distanceY).toDouble())) {
+                    moveRockView.x -= distanceX
+                    moveRockView.y -= distanceY
+                }
             }
             return true
         }

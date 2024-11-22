@@ -15,6 +15,9 @@
         android:id="@+id/temp_solve_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/temp_solve" />
+        android:backgroundTint="@color/button"
+        android:fontFamily="@font/aldrich"
+        android:text="@string/check_button"
+        android:typeface="monospace" />
 
 </RelativeLayout>
