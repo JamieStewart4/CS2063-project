@@ -7,60 +7,42 @@
 
     <Button
         android:id="@+id/level_13"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1"
+        style="@style/GridButtonStyle"
         android:backgroundTint="@color/button"
         android:textColor="@color/white"
         android:text="3" />
 
     <Button
         android:id="@+id/level_14"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1"
+        style="@style/GridButtonStyle"
         android:backgroundTint="@color/button"
         android:textColor="@color/white"
         android:text="14" />
 
     <Button
         android:id="@+id/level_15"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1"
+        style="@style/GridButtonStyle"
         android:backgroundTint="@color/button"
         android:textColor="@color/white"
         android:text="15" />
 
     <Button
         android:id="@+id/level_16"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1"
+        style="@style/GridButtonStyle"
         android:backgroundTint="@color/button"
         android:textColor="@color/white"
         android:text="16" />
 
     <Button
         android:id="@+id/level_17"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1"
+        style="@style/GridButtonStyle"
         android:backgroundTint="@color/button"
         android:textColor="@color/white"
         android:text="17" />
 
     <Button
         android:id="@+id/level_18"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1"
+        style="@style/GridButtonStyle"
         android:backgroundTint="@color/button"
         android:textColor="@color/white"
         android:text="18" />
