@@ -1,51 +1,70 @@
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:columnCount="3"
-    android:rowCount="2"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
     android:padding="16dp">
 
-    <Button
-        android:id="@+id/level_13"
-        style="@style/GridButtonStyle"
-        android:backgroundTint="@color/button"
-        android:textColor="@color/white"
-        android:text="3" />
+    <TextView
+        android:id="@+id/title_hard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hard"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/aldrich"
+        android:typeface="monospace"
+        android:layout_marginBottom="20dp" />
 
-    <Button
-        android:id="@+id/level_14"
-        style="@style/GridButtonStyle"
-        android:backgroundTint="@color/button"
-        android:textColor="@color/white"
-        android:text="14" />
+    <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="3"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
 
-    <Button
-        android:id="@+id/level_15"
-        style="@style/GridButtonStyle"
-        android:backgroundTint="@color/button"
-        android:textColor="@color/white"
-        android:text="15" />
+        <Button
+            android:id="@+id/level_13"
+            style="@style/GridButtonStyle"
+            android:backgroundTint="@color/button"
+            android:textColor="@color/white"
+            android:text="13" />
 
-    <Button
-        android:id="@+id/level_16"
-        style="@style/GridButtonStyle"
-        android:backgroundTint="@color/button"
-        android:textColor="@color/white"
-        android:text="16" />
+        <Button
+            android:id="@+id/level_14"
+            style="@style/GridButtonStyle"
+            android:backgroundTint="@color/button"
+            android:textColor="@color/white"
+            android:text="14" />
 
-    <Button
-        android:id="@+id/level_17"
-        style="@style/GridButtonStyle"
-        android:backgroundTint="@color/button"
-        android:textColor="@color/white"
-        android:text="17" />
+        <Button
+            android:id="@+id/level_15"
+            style="@style/GridButtonStyle"
+            android:backgroundTint="@color/button"
+            android:textColor="@color/white"
+            android:text="15" />
 
-    <Button
-        android:id="@+id/level_18"
-        style="@style/GridButtonStyle"
-        android:backgroundTint="@color/button"
-        android:textColor="@color/white"
-        android:text="18" />
+        <Button
+            android:id="@+id/level_16"
+            style="@style/GridButtonStyle"
+            android:backgroundTint="@color/button"
+            android:textColor="@color/white"
+            android:text="16" />
 
+        <Button
+            android:id="@+id/level_17"
+            style="@style/GridButtonStyle"
+            android:backgroundTint="@color/button"
+            android:textColor="@color/white"
+            android:text="17" />
 
-</GridLayout>
+        <Button
+            android:id="@+id/level_18"
+            style="@style/GridButtonStyle"
+            android:backgroundTint="@color/button"
+            android:textColor="@color/white"
+            android:text="18" />
+
+    </GridLayout>
+</LinearLayout>

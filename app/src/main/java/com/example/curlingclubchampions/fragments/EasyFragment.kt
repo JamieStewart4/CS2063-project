@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.curlingclubchampions.PuzzleMode
 import com.example.curlingclubchampions.R
@@ -16,6 +17,9 @@ class EasyFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val view = inflater.inflate(R.layout.fragment_easy, container, false)
+
+        val titleTextView: TextView = view.findViewById(R.id.title_easy)
+        titleTextView.text = "Easy"
 
         val buttonLevel1 = view.findViewById<Button>(R.id.level_1)
         buttonLevel1.setOnClickListener {
