@@ -18,6 +18,13 @@ class PuzzleComplete: AppCompatActivity() {
             startActivity(intent)
         }
 
+        val levelCreatorButton = findViewById<Button>(R.id.puzzleCreatorButton)
+        levelCreatorButton.setOnClickListener {
+            val intent = Intent(this@PuzzleComplete, PuzzleCreator::class.java)
+            finish()
+            startActivity(intent)
+        }
+
         // Back button (goes back to select mode screen for demo)
         val backButton = findViewById<Button>(R.id.back_button)
         backButton.setOnClickListener {
