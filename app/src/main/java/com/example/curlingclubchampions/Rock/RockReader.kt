@@ -1,9 +1,10 @@
 package com.example.curlingclubchampions.Rock
 
+import android.content.ClipDescription
 import android.content.Context
 import com.google.gson.Gson
 
-
+// Handles all information and objects relevant to a given puzzle level
 class RockReader {
 
     // Rock object constructor
@@ -15,12 +16,39 @@ class RockReader {
         var y: Double
     )
 
+    // Win Area object constructor
+    // Variables: left, top = x, y of top left corner
+    // right, bottom = x, y of bottom right corner
+    data class WinArea (
+        var left: Double,
+        var top: Double,
+        var right: Double,
+        var bottom: Double
+    )
+
+    // Level descriptions for level description, solution description
+    data class InfoDesc (
+        var desc: String
+    )
+    data class SolutionDesc (
+        var desc: String
+    )
+
     enum class Colour {
         RED, YELLOW
     }
 
     // Wrapper class to take array from rocks object in json file
     data class RockListWrapper(val rocks: List<Rock>)
+
+    // Wrapper class to take win area from json file
+    data class WinAreaWrapper(val winArea: WinArea)
+
+    // Wrapper class to take win area from json file
+    data class InfoDescWrapper(val infoDescription: InfoDesc)
+
+    // Wrapper class to take win area from json file
+    data class SolutionDescWrapper(val solutionDescription: SolutionDesc)
 
     // Read contents of json file into a string
     fun readJSON(context: Context, resourceId: Int): String {
@@ -33,6 +61,27 @@ class RockReader {
         val gson = Gson()
         val rockListWrapper = gson.fromJson(jsonString, RockListWrapper::class.java)
         return rockListWrapper.rocks
+    }
+
+    // Parse lines of json string to create win area object
+    fun parseJSONToWinArea(jsonString: String): WinArea {
+        val gson = Gson()
+        val winAreaWrapper = gson.fromJson(jsonString, WinAreaWrapper::class.java)
+        return winAreaWrapper.winArea
+    }
+
+    // Parse lines of json string to create win area object
+    fun parseJSONToInfoDesc(jsonString: String): InfoDesc {
+        val gson = Gson()
+        val winAreaWrapper = gson.fromJson(jsonString, InfoDescWrapper::class.java)
+        return winAreaWrapper.infoDescription
+    }
+
+    // Parse lines of json string to create win area object
+    fun parseJSONToSolutionDesc(jsonString: String): SolutionDesc {
+        val gson = Gson()
+        val winAreaWrapper = gson.fromJson(jsonString, SolutionDescWrapper::class.java)
+        return winAreaWrapper.solutionDescription
     }
 
 }

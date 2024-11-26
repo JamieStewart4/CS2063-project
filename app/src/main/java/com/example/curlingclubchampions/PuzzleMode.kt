@@ -4,20 +4,21 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
+import android.media.Image
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.GestureDetector
 import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.MotionEvent
+import android.view.View
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.RelativeLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.withStyledAttributes
 import com.example.curlingclubchampions.Rock.RockReader
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -30,6 +31,10 @@ class PuzzleMode: AppCompatActivity() {
     private lateinit var gestureDetector: GestureDetector
 
     private lateinit var rockList: List<RockReader.Rock>
+    private lateinit var winArea: Rect
+    private lateinit var infoDesc: RockReader.InfoDesc
+    private lateinit var solutionDesc: RockReader.SolutionDesc
+
     private lateinit var moveRock: RockReader.Rock
     private lateinit var moveRockView: ImageView
 
@@ -71,17 +76,21 @@ class PuzzleMode: AppCompatActivity() {
             }
         }
 
-        // Solve button for demo
+        // Solve button
         val solveButton = findViewById<Button>(R.id.temp_solve_button)
         solveButton.setOnClickListener {
-            val intent = Intent(this@PuzzleMode, PuzzleComplete::class.java)
-            finish()
-            startActivity(intent)
+            checkSolution()
         }
 
+        // Get list of rocks and win area from json string for this level
         val rockReader = RockReader()
         val jsonString = rockReader.readJSON(this, jsonResourceId)
         rockList = rockReader.parseJSONToList(jsonString)
+        val winAreaObj = rockReader.parseJSONToWinArea(jsonString)
+
+        // Get info and solution descriptions for this level
+        infoDesc = rockReader.parseJSONToInfoDesc(jsonString)
+        solutionDesc = rockReader.parseJSONToSolutionDesc(jsonString)
 
         redRockDrawable = getDrawable(R.drawable.red_rock)
         yellowRockDrawable = getDrawable(R.drawable.yellow_rock)
@@ -108,6 +117,12 @@ class PuzzleMode: AppCompatActivity() {
         moveRockView.y = moveRock.y.toFloat()
         moveRockView.setImageDrawable(yellowRockDrawable)
         layout.addView(moveRockView)
+
+        // Set win area
+        winArea = Rect(winAreaObj.left.toInt(), winAreaObj.top.toInt(),
+            winAreaObj.right.toInt(), winAreaObj.bottom.toInt()
+        )
+
 
         // Dimensions for drawable for moving rocks
         moveRockView.post {
@@ -142,13 +157,22 @@ class PuzzleMode: AppCompatActivity() {
     }
 
     fun rockInBoundsTest(x: Double, y: Double): Boolean {
+        val location = IntArray(2)
+        val houseView = findViewById<ImageView>(R.id.imageView)
+        houseView.getLocationOnScreen(location)
+
+        val houseX = location[0]
+        val houseY = location[1]
+        val houseWidth = houseView.width
+        val houseHeight = houseView.height
+
         // Left and right bounds check
-        if (x < rockWidth / 2 || x > displayWidth - rockWidth / 2) {
+        if (x < houseX || x > houseWidth - rockWidth) {
             Log.i("PuzzleMode", "rockInBoundsTest failed x bounds check: x = $x, y = $y")
             return false
         }
         // Up and down bounds check
-        if (y < rockHeight / 2 || y > displayHeight - rockHeight / 2) {
+        if (y < houseY || y > houseHeight - rockHeight) {
             Log.i("PuzzleMode", "rockInBoundsTest failed y bounds check: x = $x, y = $y")
             return false
         }
@@ -230,6 +254,20 @@ class PuzzleMode: AppCompatActivity() {
                 }
             }
             return true
+        }
+    }
+
+    private fun checkSolution() {
+        // Check if rock inside win area
+        // Check if rectangle win area contains x and y of center of rock
+        if (winArea.contains((moveRockView.x + rockWidth / 2).toInt(),
+                (moveRockView.y + rockWidth / 2).toInt()
+            )) {
+            val intent = Intent(this@PuzzleMode, PuzzleComplete::class.java)
+            finish()
+            startActivity(intent)
+        } else {
+            Toast.makeText(this, "Incorrect!", Toast.LENGTH_SHORT).show()
         }
     }
 }

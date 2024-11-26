@@ -6,4 +6,5 @@
     <color name="alternate_button">#e63946</color>
     <color name="background">#F1FAEE</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="game_background">#0E2180</color>
 </resources>

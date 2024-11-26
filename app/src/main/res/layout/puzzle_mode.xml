@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/puzzle_relative_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/game_background">
 
     <ImageView
         android:id="@+id/imageView"
@@ -13,11 +14,32 @@
 
     <Button
         android:id="@+id/temp_solve_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="107dp"
+        android:layout_height="62dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:backgroundTint="@color/button"
         android:fontFamily="@font/aldrich"
         android:text="@string/check_button"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:typeface="monospace" />
+
+    <Button
+        android:id="@+id/info_button"
+        android:layout_width="107dp"
+        android:layout_height="62dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/button"
+        android:fontFamily="@font/aldrich"
+        android:text="@string/info_button"
+        android:textSize="18sp"
+        android:textColor="@color/white"
         android:typeface="monospace" />
 
 </RelativeLayout>
