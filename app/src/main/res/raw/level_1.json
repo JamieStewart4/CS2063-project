@@ -1,42 +1,27 @@
 {
-  "rocks": [
+  "rocks":
+  [
     {
-      "x": 50,
-      "y": 100,
-      "colour": "RED"
+      "colour":"RED",
+      "x":278.96484375,
+      "y":375.9404296875
     },
     {
-      "x": 200,
-      "y": 300,
-      "colour": "RED"
-    },
-    {
-      "x": 500,
-      "y": 500,
-      "colour": "YELLOW"
-    },
-    {
-      "x": 150,
-      "y": 75,
-      "colour": "RED"
-    },
-    {
-      "x": 900,
-      "y": 900,
-      "colour": "YELLOW"
+      "colour":"RED",
+      "x":861.943359375,
+      "y":855.9697265625
     }
   ],
   "winArea":{
-    "left": 500,
-    "top": 500,
-    "right": 900,
-    "bottom": 900
+    "left": 278.96484375,
+    "top": 375.9404296875,
+    "right": 861.943359375,
+    "bottom": 855.9697265625
   },
   "infoDescription": {
-    "description": "Test info description"
+    "description": "You are on the Yellow team, throwing your last rock of this end. Get it closer to the center to out-count the red rocks and score a point!"
   },
   "solutionDescription": {
-    "description": "Test solution description"
+    "description": "Your rock was closer to the center than the red rocks, so you scored a point in this end!"
   }
-
 }

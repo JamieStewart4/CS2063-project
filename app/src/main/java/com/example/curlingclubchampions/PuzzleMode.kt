@@ -4,20 +4,16 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
-import android.media.Image
 import android.os.Bundle
 import android.util.Log
 import android.view.GestureDetector
 import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.MotionEvent
-import android.view.View
 import android.widget.Button
-import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.withStyledAttributes
 import com.example.curlingclubchampions.Rock.RockReader
 import kotlin.math.pow
 import kotlin.math.sqrt
@@ -30,6 +26,7 @@ val Context.displayHeight: Int
 class PuzzleMode: AppCompatActivity() {
     private lateinit var gestureDetector: GestureDetector
 
+    private var puzzleId = -1
     private lateinit var rockList: List<RockReader.Rock>
     private lateinit var winArea: Rect
     private lateinit var infoDesc: RockReader.InfoDesc
@@ -57,7 +54,7 @@ class PuzzleMode: AppCompatActivity() {
         }
 
         // Loading puzzles
-        val puzzleId = intent.getIntExtra("PUZZLE_ID", -1)
+        puzzleId = intent.getIntExtra("PUZZLE_ID", -1)
         if (puzzleId == -1) {
             Log.e("PuzzleMode", "Invalid puzzle ID received!")
             finish()
@@ -66,6 +63,7 @@ class PuzzleMode: AppCompatActivity() {
 
         Log.i("PuzzleMode", "Loading puzzle ID: $puzzleId")
 
+        // Loads a puzzle level based off of the puzzle ID passed through intent
         val jsonResourceId = when (puzzleId) {
             1 -> R.raw.level_1
             //ADD LEVELS AS WE CREATE THEM
@@ -264,6 +262,8 @@ class PuzzleMode: AppCompatActivity() {
                 (moveRockView.y + rockWidth / 2).toInt()
             )) {
             val intent = Intent(this@PuzzleMode, PuzzleComplete::class.java)
+            intent.putExtra("PUZZLE_ID", puzzleId)
+            intent.putExtra("SOLUTION", solutionDesc.desc) // Get string from description
             finish()
             startActivity(intent)
         } else {
