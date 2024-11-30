@@ -16,14 +16,22 @@ class RockReader {
         var y: Double
     )
 
-    // Win Area object constructor
-    // Variables: left, top = x, y of top left corner
-    // right, bottom = x, y of bottom right corner
+    // Win Area object constructor, has different variables in json depending on whether its a rectangle or circles
+    // types: rectangle, circle
+    // rectangle:
+    //// Variables: left, top = x, y of top left corner
+    //// right, bottom = x, y of bottom right corner
+    // circle:
+    //// x, y (center), radius
     data class WinArea (
-        var left: Double,
-        var top: Double,
-        var right: Double,
-        var bottom: Double
+        var type: String,
+        var left: Double?,
+        var top: Double?,
+        var right: Double?,
+        var bottom: Double?,
+        var x: Double?,
+        var y: Double?,
+        var radius: Double?
     )
 
     // Level descriptions for level description, solution description

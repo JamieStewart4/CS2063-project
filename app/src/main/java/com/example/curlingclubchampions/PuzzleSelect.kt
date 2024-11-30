@@ -3,6 +3,7 @@ package com.example.curlingclubchampions
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
@@ -35,7 +36,7 @@ class PuzzleSelect : AppCompatActivity() {
         updateDots(0, dots)
 
         // Back button functionality
-        val backButton = findViewById<Button>(R.id.back_button)
+        val backButton = findViewById<ImageButton>(R.id.back_button)
         backButton.setOnClickListener {
             finish()
         }

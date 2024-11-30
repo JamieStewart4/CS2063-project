@@ -1,0 +1,37 @@
+{
+  "rocks": [
+    {
+      "x": 456,
+      "y": 1200,
+      "colour": "RED"
+    },
+    {
+      "x": 200,
+      "y": 300,
+      "colour": "RED"
+    },
+    {
+      "x": 490,
+      "y": 470,
+      "colour": "RED"
+    },
+    {
+      "x": 850,
+      "y": 1100,
+      "colour": "YELLOW"
+    }
+  ],
+  "winArea":{
+    "type": "circle",
+    "x": 540,
+    "y": 620,
+    "radius": 80
+  },
+  "infoDescription": {
+    "description": "You are again throwing the last rock of the end, with a red guard in front and a red rock behind the button. You need to score a point!"
+  },
+  "solutionDescription": {
+    "description": "No matter where the red rocks are in the play area, as long as you are closer to the center, you score the point!"
+  }
+
+}

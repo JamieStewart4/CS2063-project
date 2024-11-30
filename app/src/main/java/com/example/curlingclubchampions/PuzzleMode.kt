@@ -10,11 +10,13 @@ import android.view.GestureDetector
 import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.MotionEvent
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.curlingclubchampions.Rock.RockReader
+import com.example.curlingclubchampions.Rock.WinCircle
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -28,7 +30,9 @@ class PuzzleMode: AppCompatActivity() {
 
     private var puzzleId = -1
     private lateinit var rockList: List<RockReader.Rock>
-    private lateinit var winArea: Rect
+    private lateinit var winArea: RockReader.WinArea
+    private lateinit var winAreaRect: Rect
+    private lateinit var winAreaCirc: WinCircle
     private lateinit var infoDesc: RockReader.InfoDesc
     private lateinit var solutionDesc: RockReader.SolutionDesc
 
@@ -47,10 +51,10 @@ class PuzzleMode: AppCompatActivity() {
         setContentView(R.layout.puzzle_mode)
         val layout = findViewById<RelativeLayout>(R.id.puzzle_relative_layout)
 
-        if (layout == null) {
-            Log.e("PuzzleMode", "Layout NULL!")
-        } else {
-            Log.i("PuzzleMode", "Layout NOT NULL!!!!")
+        // Back button functionality
+        val backButton = findViewById<ImageButton>(R.id.back_button)
+        backButton.setOnClickListener {
+            finish()
         }
 
         // Loading puzzles
@@ -66,6 +70,7 @@ class PuzzleMode: AppCompatActivity() {
         // Loads a puzzle level based off of the puzzle ID passed through intent
         val jsonResourceId = when (puzzleId) {
             1 -> R.raw.level_1
+            2 -> R.raw.level_2
             //ADD LEVELS AS WE CREATE THEM
             else -> {
                 Log.e("PuzzleMode", "No JSON file mapped for puzzle ID: $puzzleId")
@@ -84,7 +89,7 @@ class PuzzleMode: AppCompatActivity() {
         val rockReader = RockReader()
         val jsonString = rockReader.readJSON(this, jsonResourceId)
         rockList = rockReader.parseJSONToList(jsonString)
-        val winAreaObj = rockReader.parseJSONToWinArea(jsonString)
+        winArea = rockReader.parseJSONToWinArea(jsonString)
 
         // Get info and solution descriptions for this level
         infoDesc = rockReader.parseJSONToInfoDesc(jsonString)
@@ -117,9 +122,7 @@ class PuzzleMode: AppCompatActivity() {
         layout.addView(moveRockView)
 
         // Set win area
-        winArea = Rect(winAreaObj.left.toInt(), winAreaObj.top.toInt(),
-            winAreaObj.right.toInt(), winAreaObj.bottom.toInt()
-        )
+        createWinArea(winArea)
 
 
         // Dimensions for drawable for moving rocks
@@ -131,6 +134,18 @@ class PuzzleMode: AppCompatActivity() {
         Log.i("PuzzleMode", "height = $rockHeight , width = $rockWidth")
 
         gestureDetector = GestureDetector(this, MyGestureListener())
+    }
+
+    private fun createWinArea(winAreaObj: RockReader.WinArea) {
+        if (winAreaObj.type == "rectangle") {
+            winAreaRect = Rect(winAreaObj.left!!.toInt(), winAreaObj.top!!.toInt(),
+                winAreaObj.right!!.toInt(), winAreaObj.bottom!!.toInt()
+            )
+        } else if (winAreaObj.type == "circle") {
+            winAreaCirc = WinCircle(winAreaObj.radius!!, winAreaObj.x!!, winAreaObj.y!!)
+        } else {
+            Log.e("PuzzleMode", "Invalid win area type: ${winAreaObj.type}")
+        }
     }
 
     // Returns boolean result for whether a rock will intersect another rock
@@ -151,6 +166,7 @@ class PuzzleMode: AppCompatActivity() {
             if (distance < rockCircRadius * 2 - 20) return true
         }
 
+        // No rock hit
         return false
     }
 
@@ -190,6 +206,8 @@ class PuzzleMode: AppCompatActivity() {
             Log.i("PuzzleMode", "single tap")
 
             val layout = findViewById<RelativeLayout>(R.id.puzzle_relative_layout)
+            // Measured size = 1080, 2126
+            Log.i("PuzzleMode", "width: ${layout.measuredWidth}, height: ${layout.measuredHeight}")
             val location = IntArray(2)
             layout.getLocationOnScreen(location)
 
@@ -256,18 +274,30 @@ class PuzzleMode: AppCompatActivity() {
     }
 
     private fun checkSolution() {
-        // Check if rock inside win area
-        // Check if rectangle win area contains x and y of center of rock
-        if (winArea.contains((moveRockView.x + rockWidth / 2).toInt(),
-                (moveRockView.y + rockWidth / 2).toInt()
-            )) {
-            val intent = Intent(this@PuzzleMode, PuzzleComplete::class.java)
-            intent.putExtra("PUZZLE_ID", puzzleId)
-            intent.putExtra("SOLUTION", solutionDesc.desc) // Get string from description
-            finish()
-            startActivity(intent)
+        // Check if rock is not inside either win area type, if not then display incorrect message
+        if (winArea.type == "rectangle") {
+            // Check if rectangle win area does not contain x and y of center of rock
+            if (!winAreaRect.contains((moveRockView.x + rockWidth / 2).toInt(),
+                    (moveRockView.y + rockWidth / 2).toInt()
+                )) {
+                Toast.makeText(this, "Incorrect!", Toast.LENGTH_SHORT).show()
+                return
+            }
+        } else if (winArea.type == "circle") {
+            // Use Circle rock function to check if not inside
+           if (!winAreaCirc.rockInWinArea(moveRockView, rockWidth, rockHeight)) {
+               Toast.makeText(this, "Incorrect!", Toast.LENGTH_SHORT).show()
+               return
+           }
         } else {
-            Toast.makeText(this, "Incorrect!", Toast.LENGTH_SHORT).show()
+            Log.e("PuzzleMode", "Invalid win area type: ${winArea.type}")
+            finish()
         }
+        // Else, rock must be in win area
+        val intent = Intent(this@PuzzleMode, PuzzleComplete::class.java)
+        intent.putExtra("PUZZLE_ID", puzzleId)
+        intent.putExtra("SOLUTION", solutionDesc.desc) // Get string from description
+        finish()
+        startActivity(intent)
     }
 }

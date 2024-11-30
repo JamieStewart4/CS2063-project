@@ -8,13 +8,12 @@
     android:background="@color/background"
     android:padding="16dp">
 
-    <Button
+    <ImageButton
         android:id="@+id/back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/transparent"
-        android:drawableTop="@drawable/red_back_arrow"
-        android:layout_gravity="start" />
+        android:src="@drawable/red_back_arrow" />
 
     <TextView
         android:id="@+id/puzzle_select_title"
