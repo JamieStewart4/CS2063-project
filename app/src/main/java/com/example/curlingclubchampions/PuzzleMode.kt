@@ -14,6 +14,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.curlingclubchampions.Rock.RockReader
 import com.example.curlingclubchampions.Rock.WinCircle
@@ -135,6 +136,17 @@ class PuzzleMode: AppCompatActivity() {
         Log.i("PuzzleMode", "height = $rockHeight , width = $rockWidth")
 
         gestureDetector = GestureDetector(this, MyGestureListener())
+
+        val infoButton: Button = findViewById(R.id.info_button)
+        Log.d("PuzzleMode", "infoDesc = ${infoDesc.description}")
+        Log.d("PuzzleMode", "solDesc = ${solutionDesc.description}")
+        infoButton.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Information")
+            builder.setMessage(infoDesc.description)
+            builder.setPositiveButton("Close") { dialog, _ -> dialog.dismiss() }
+            builder.create().show()
+        }
     }
 
     private fun createWinArea(winAreaObj: RockReader.WinArea) {
@@ -297,7 +309,7 @@ class PuzzleMode: AppCompatActivity() {
         // Else, rock must be in win area
         val intent = Intent(this@PuzzleMode, PuzzleComplete::class.java)
         intent.putExtra("PUZZLE_ID", puzzleId)
-        intent.putExtra("SOLUTION", solutionDesc.desc) // Get string from description
+        intent.putExtra("SOLUTION", solutionDesc.description) // Get string from description
         finish()
         startActivity(intent)
     }

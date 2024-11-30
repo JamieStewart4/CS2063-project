@@ -36,10 +36,10 @@ class RockReader {
 
     // Level descriptions for level description, solution description
     data class InfoDesc (
-        var desc: String
+        var description: String
     )
     data class SolutionDesc (
-        var desc: String
+        var description: String
     )
 
     enum class Colour {
@@ -81,15 +81,15 @@ class RockReader {
     // Parse lines of json string to create win area object
     fun parseJSONToInfoDesc(jsonString: String): InfoDesc {
         val gson = Gson()
-        val winAreaWrapper = gson.fromJson(jsonString, InfoDescWrapper::class.java)
-        return winAreaWrapper.infoDescription
+        val infoDescWrapper = gson.fromJson(jsonString, InfoDescWrapper::class.java)
+        return infoDescWrapper.infoDescription
     }
 
     // Parse lines of json string to create win area object
     fun parseJSONToSolutionDesc(jsonString: String): SolutionDesc {
         val gson = Gson()
-        val winAreaWrapper = gson.fromJson(jsonString, SolutionDescWrapper::class.java)
-        return winAreaWrapper.solutionDescription
+        val solutionDescWrapper = gson.fromJson(jsonString, SolutionDescWrapper::class.java)
+        return solutionDescWrapper.solutionDescription
     }
 
 }
