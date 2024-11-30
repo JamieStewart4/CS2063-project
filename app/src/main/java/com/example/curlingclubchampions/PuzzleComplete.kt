@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 class PuzzleComplete: AppCompatActivity() {
 
     private var puzzleID = 0
+    private var numLevels = 18
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +26,10 @@ class PuzzleComplete: AppCompatActivity() {
             val intent = Intent(this@PuzzleComplete, PuzzleMode::class.java)
             finish()
             intent.putExtra("PUZZLE_ID", puzzleID + 1)
-            startActivity(intent)
+            // Only start activity if in bounds
+            if (puzzleID + 1 <= numLevels) {
+                startActivity(intent)
+            }
         }
 
         val levelCreatorButton = findViewById<Button>(R.id.puzzleCreatorButton)

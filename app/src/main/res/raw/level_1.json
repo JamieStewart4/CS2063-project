@@ -8,7 +8,7 @@
     },
     {
       "colour":"RED",
-      "x":540,
+      "x":100,
       "y":620
     }
   ],
@@ -19,7 +19,7 @@
     "radius": 300
   },
   "infoDescription": {
-    "description": "Throughout each level in this game, you are on the Yellow team. In this level, you are throwing the last rock of this end. Get it closer to the center to out-count the red rocks and score a point!"
+    "description": "Throughout each level in this game, you are on the Yellow team. In this level, you are throwing the last rock of this end. Move the yellow rock and get it closer to the center to out-count the red rocks and score a point!"
   },
   "solutionDescription": {
     "description": "Your rock was closer to the center than the red rocks, so you scored a point in this end!"

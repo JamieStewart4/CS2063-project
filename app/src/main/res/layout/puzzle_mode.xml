@@ -20,7 +20,7 @@
         android:src="@drawable/red_back_arrow"
         android:layout_alignParentStart="true"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"/>
+        android:layout_marginStart="15dp"/>
 
     <Button
         android:id="@+id/temp_solve_button"
