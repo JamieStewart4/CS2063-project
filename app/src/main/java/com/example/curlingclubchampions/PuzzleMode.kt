@@ -71,9 +71,10 @@ class PuzzleMode: AppCompatActivity() {
         val jsonResourceId = when (puzzleId) {
             1 -> R.raw.level_1
             2 -> R.raw.level_2
-            //ADD LEVELS AS WE CREATE THEM
+            //ADD LEVELS AS WE CREATE THEM LIKE ABOVE
             else -> {
                 Log.e("PuzzleMode", "No JSON file mapped for puzzle ID: $puzzleId")
+                Toast.makeText(this, "This puzzle is not created yet.", Toast.LENGTH_SHORT).show()
                 finish()
                 return
             }
