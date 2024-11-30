@@ -138,12 +138,14 @@ class PuzzleMode: AppCompatActivity() {
         gestureDetector = GestureDetector(this, MyGestureListener())
 
         val infoButton: Button = findViewById(R.id.info_button)
-        Log.d("PuzzleMode", "infoDesc = ${infoDesc.description}")
-        Log.d("PuzzleMode", "solDesc = ${solutionDesc.description}")
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Level $puzzleId")
+        builder.setMessage(infoDesc.description)  // Assuming infoDesc is of type InfoDesc
+        builder.setPositiveButton("Start") { dialog, _ -> dialog.dismiss() }
+        builder.create().show()
+
         infoButton.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle("Information")
-            builder.setMessage(infoDesc.description)
             builder.setPositiveButton("Close") { dialog, _ -> dialog.dismiss() }
             builder.create().show()
         }
