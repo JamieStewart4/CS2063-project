@@ -31,6 +31,7 @@ class PuzzleMode: AppCompatActivity() {
 
     private var puzzleId = -1
     private lateinit var rockList: List<RockReader.Rock>
+    private lateinit var winAreaList: List<RockReader.WinArea>
     private lateinit var winArea: RockReader.WinArea
     private lateinit var winAreaRect: Rect
     private lateinit var winAreaCirc: WinCircle
@@ -72,6 +73,7 @@ class PuzzleMode: AppCompatActivity() {
         val jsonResourceId = when (puzzleId) {
             1 -> R.raw.level_1
             2 -> R.raw.level_2
+            3 -> R.raw.level_3
             //ADD LEVELS AS WE CREATE THEM LIKE ABOVE
             else -> {
                 Log.e("PuzzleMode", "No JSON file mapped for puzzle ID: $puzzleId")
@@ -91,7 +93,9 @@ class PuzzleMode: AppCompatActivity() {
         val rockReader = RockReader()
         val jsonString = rockReader.readJSON(this, jsonResourceId)
         rockList = rockReader.parseJSONToList(jsonString)
-        winArea = rockReader.parseJSONToWinArea(jsonString)
+        winAreaList = rockReader.parseJSONToWinArea(jsonString)
+        // temporary: win area is just index 0 until multi rock logic is done
+        winArea = winAreaList[0]
 
         // Get info and solution descriptions for this level
         infoDesc = rockReader.parseJSONToInfoDesc(jsonString)

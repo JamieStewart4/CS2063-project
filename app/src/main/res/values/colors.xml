@@ -7,4 +7,5 @@
     <color name="background">#F1FAEE</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="game_background">#0E2180</color>
+    <color name="puzzle_level_complete">#009B21</color>
 </resources>

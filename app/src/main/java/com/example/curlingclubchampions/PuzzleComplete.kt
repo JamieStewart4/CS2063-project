@@ -2,6 +2,7 @@ package com.example.curlingclubchampions
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
@@ -19,6 +20,13 @@ class PuzzleComplete: AppCompatActivity() {
         setContentView(R.layout.puzzle_complete_screen)
 
         puzzleID = intent.getIntExtra("PUZZLE_ID", -1)
+
+        // Update completion status for this level
+        val preferences = getSharedPreferences("level_status", MODE_PRIVATE)
+        with (preferences.edit()) {
+            putBoolean(puzzleID.toString(), true)
+            apply()
+        }
 
         // Next Level button destroys current activity and goes back into puzzle for sake of demo
         val nextLevelButton = findViewById<Button>(R.id.nextLevelButton)
@@ -56,5 +64,20 @@ class PuzzleComplete: AppCompatActivity() {
 
         val congratsLevelTextView = findViewById<TextView>(R.id.congratulations_info)
         congratsLevelTextView.text = "Level $puzzleID ($difficulty) complete."
+
+        val starInfoTextView = findViewById<TextView>(R.id.starProgress)
+        val totalStars = updateTotalStars(preferences)
+        starInfoTextView.text = "$totalStars/18 total stars achieved."
+    }
+
+    private fun updateTotalStars(preferences: SharedPreferences): Int {
+        var totalStars = 0
+        for (i in 1..18) {
+            val status = preferences.getBoolean(i.toString(), false)
+            if (status) {
+                totalStars++
+            }
+        }
+        return totalStars
     }
 }

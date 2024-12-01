@@ -1,6 +1,8 @@
 package com.example.curlingclubchampions.fragments
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,35 +23,43 @@ class EasyFragment : Fragment() {
         val titleTextView: TextView = view.findViewById(R.id.title_easy)
         titleTextView.text = "Easy"
 
+        val preferences = requireContext().getSharedPreferences("level_status", Context.MODE_PRIVATE)
+
         val buttonLevel1 = view.findViewById<Button>(R.id.level_1)
         buttonLevel1.setOnClickListener {
             startPuzzleMode(1)
         }
+        updateButtonStatus(preferences, buttonLevel1, 1.toString())
 
         val buttonLevel2 = view.findViewById<Button>(R.id.level_2)
         buttonLevel2.setOnClickListener {
             startPuzzleMode(2)
         }
+        updateButtonStatus(preferences, buttonLevel2, 2.toString())
 
         val buttonLevel3 = view.findViewById<Button>(R.id.level_3)
         buttonLevel3.setOnClickListener {
             startPuzzleMode(3)
         }
+        updateButtonStatus(preferences, buttonLevel3, 3.toString())
 
         val buttonLevel4 = view.findViewById<Button>(R.id.level_4)
         buttonLevel4.setOnClickListener {
             startPuzzleMode(4)
         }
+        updateButtonStatus(preferences, buttonLevel4, 4.toString())
 
         val buttonLevel5 = view.findViewById<Button>(R.id.level_5)
         buttonLevel5.setOnClickListener {
             startPuzzleMode(5)
         }
+        updateButtonStatus(preferences, buttonLevel5, 5.toString())
 
         val buttonLevel6 = view.findViewById<Button>(R.id.level_6)
         buttonLevel6.setOnClickListener {
             startPuzzleMode(6)
         }
+        updateButtonStatus(preferences, buttonLevel6, 6.toString())
 
         return view
     }
@@ -58,5 +68,15 @@ class EasyFragment : Fragment() {
         val intent = Intent(requireContext(), PuzzleMode::class.java)
         intent.putExtra("PUZZLE_ID", puzzleId)
         startActivity(intent)
+    }
+
+    private fun updateButtonStatus(preferences: SharedPreferences, button: Button, key: String) {
+        val status = preferences.getBoolean(key, false)
+        var color = resources.getColor(R.color.button, null)
+
+        if (status) {
+            color = resources.getColor(R.color.puzzle_level_complete, null)
+        }
+        button.setBackgroundColor(color)
     }
 }

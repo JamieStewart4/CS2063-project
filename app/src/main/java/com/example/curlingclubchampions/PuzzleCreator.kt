@@ -297,7 +297,7 @@ class PuzzleCreator : AppCompatActivity() {
         val gson = Gson()
         val jsonData = mapOf(
             "rocks" to rockList,       // Serialize the rock list
-            "winAreas" to winAreaList // Serialize the win area list
+            "winArea" to winAreaList // Serialize the win area list
         )
         val jsonString = gson.toJson(jsonData)
 

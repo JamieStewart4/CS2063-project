@@ -50,7 +50,7 @@ class RockReader {
     data class RockListWrapper(val rocks: List<Rock>)
 
     // Wrapper class to take win area from json file
-    data class WinAreaWrapper(val winArea: WinArea)
+    data class WinAreaWrapper(val winArea: List<WinArea>)
 
     // Wrapper class to take win area from json file
     data class InfoDescWrapper(val infoDescription: InfoDesc)
@@ -72,7 +72,7 @@ class RockReader {
     }
 
     // Parse lines of json string to create win area object
-    fun parseJSONToWinArea(jsonString: String): WinArea {
+    fun parseJSONToWinArea(jsonString: String): List<WinArea> {
         val gson = Gson()
         val winAreaWrapper = gson.fromJson(jsonString, WinAreaWrapper::class.java)
         return winAreaWrapper.winArea
