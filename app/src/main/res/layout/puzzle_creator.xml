@@ -17,24 +17,37 @@
         android:layout_height="wrap_content"
         android:text="@string/creator_save" />
 
+    <!-- Remove Rocks Button -->
+
     <Button
         android:id="@+id/switch_color_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_toStartOf="@id/remove_rock_button"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="18dp"
+        android:layout_toStartOf="@id/rock_button"
         android:text="@string/creator_switch_color" />
 
-    <!-- Remove Rocks Button -->
     <Button
-        android:id="@+id/remove_rock_button"
+        android:id="@+id/rock_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="16dp"
         android:layout_alignParentEnd="true"
         android:text="@string/creator_remove_rocks_mode" />
+
+    <Button
+        android:id="@+id/win_area_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginBottom="17dp"
+        android:text="@string/place_win_area" />
+
+
 
 </RelativeLayout>

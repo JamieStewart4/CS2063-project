@@ -15,4 +15,6 @@
     <string name="creator_save">Save</string>
     <string name="creator_switch_color">Switch Color</string>
     <string name="creator_remove_rocks_mode">Remove Rocks</string>
+    <string name="place_win_area">Place Win Area</string>
+    <string name="creator_remove_win_area">Remove Win Area</string>
 </resources>
