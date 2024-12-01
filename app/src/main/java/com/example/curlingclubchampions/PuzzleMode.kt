@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
+import android.media.Image
 import android.os.Bundle
 import android.util.Log
 import android.view.GestureDetector
@@ -30,14 +31,21 @@ class PuzzleMode: AppCompatActivity() {
     private lateinit var gestureDetector: GestureDetector
 
     private var puzzleId = -1
+    // List of rocks drawn on screen
     private lateinit var rockList: List<RockReader.Rock>
+    // List of win areas for this puzzle
     private lateinit var winAreaList: List<RockReader.WinArea>
+    // Current active win area
     private lateinit var winArea: RockReader.WinArea
     private lateinit var winAreaRect: Rect
     private lateinit var winAreaCirc: WinCircle
+    // Sequence of additional rocks added to screen for multi rock solutions
+    private lateinit var rockSequence: List<RockReader.Rock>
+    // Descriptions for level information + solution
     private lateinit var infoDesc: RockReader.InfoDesc
     private lateinit var solutionDesc: RockReader.SolutionDesc
 
+    // Current active moving rock
     private lateinit var moveRock: RockReader.Rock
     private lateinit var moveRockView: ImageView
 
@@ -97,6 +105,9 @@ class PuzzleMode: AppCompatActivity() {
         // temporary: win area is just index 0 until multi rock logic is done
         winArea = winAreaList[0]
 
+        // Get sequence of rocks to be added for multi rock solutions
+        rockSequence = rockReader.parseJSONToSequenceList(jsonString)
+
         // Get info and solution descriptions for this level
         infoDesc = rockReader.parseJSONToInfoDesc(jsonString)
         solutionDesc = rockReader.parseJSONToSolutionDesc(jsonString)
@@ -107,24 +118,14 @@ class PuzzleMode: AppCompatActivity() {
 
         // Add rocks to screen
         for (rock in rockList) {
-            val newRock = ImageView(this)
-            newRock.x = rock.x.toFloat()
-            newRock.y = rock.y.toFloat()
-            if (rock.colour == RockReader.Colour.RED) {
-                newRock.setImageDrawable(redRockDrawable)
-            } else if (rock.colour == RockReader.Colour.YELLOW) {
-                newRock.setImageDrawable(yellowRockDrawable)
-            }
+            val newRock = createImageViewFromRock(rock)
             layout.addView(newRock)
         }
 
         // Create moveable rock
         moveRock = RockReader.Rock(RockReader.Colour.YELLOW, 475.0, 1900.0)
         // Create image view for moveable rock
-        moveRockView = ImageView(this)
-        moveRockView.x = moveRock.x.toFloat()
-        moveRockView.y = moveRock.y.toFloat()
-        moveRockView.setImageDrawable(yellowRockDrawable)
+        moveRockView = createImageViewFromRock(moveRock)
         layout.addView(moveRockView)
 
         // Set win area
@@ -153,6 +154,18 @@ class PuzzleMode: AppCompatActivity() {
             builder.setPositiveButton("Close") { dialog, _ -> dialog.dismiss() }
             builder.create().show()
         }
+    }
+
+    private fun createImageViewFromRock(rock: RockReader.Rock): ImageView {
+        val newRock = ImageView(this)
+        newRock.x = rock.x.toFloat()
+        newRock.y = rock.y.toFloat()
+        if (rock.colour == RockReader.Colour.RED) {
+            newRock.setImageDrawable(redRockDrawable)
+        } else if (rock.colour == RockReader.Colour.YELLOW) {
+            newRock.setImageDrawable(yellowRockDrawable)
+        }
+        return newRock
     }
 
     private fun createWinArea(winAreaObj: RockReader.WinArea) {

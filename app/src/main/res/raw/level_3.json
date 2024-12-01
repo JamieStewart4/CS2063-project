@@ -17,6 +17,9 @@
       "y":639.806640625
     }
   ],
+  "rockSequence": [
+
+  ],
   "winArea":
   [
     {
@@ -28,9 +31,9 @@
     }
   ],
   "infoDescription": {
-    "description": "You are again throwing the last rock of the end, with a red guard in front and a red rock behind the button. You need to score a point!"
+    "description": "You are throwing your last rock of the end, but the other team has hammer. Protect your yellow rock so the other team cannot hit it!"
   },
   "solutionDescription": {
-    "description": "No matter where the red rocks are in the play area, as long as you are closer to the center, you score the point!"
+    "description": "A well-placed guard is great for protecting your stones in the house. As long as the guard is covering the majority of the rock in the house, the other team will have a hard time removing it!"
   }
 }

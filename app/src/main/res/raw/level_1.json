@@ -12,12 +12,17 @@
       "y":620
     }
   ],
-  "winArea":{
-    "type": "circle",
-    "x": 540,
-    "y": 620,
-    "radius": 300
-  },
+  "rockSequence": [
+
+  ],
+  "winArea":[
+    {
+      "type": "circle",
+      "x": 540,
+      "y": 620,
+      "radius": 300
+    }
+  ],
   "infoDescription": {
     "description": "Throughout each level in this game, you are on the Yellow team. In this level, you are throwing the last rock of this end. Move the yellow rock and get it closer to the center to out-count the red rocks and score a point!"
   },

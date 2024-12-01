@@ -21,12 +21,17 @@
       "colour": "YELLOW"
     }
   ],
-  "winArea":{
-    "type": "circle",
-    "x": 540,
-    "y": 620,
-    "radius": 80
-  },
+  "rockSequence": [
+
+  ],
+  "winArea":[
+    {
+      "type": "circle",
+      "x": 540,
+      "y": 620,
+      "radius": 80
+    }
+  ],
   "infoDescription": {
     "description": "You are again throwing the last rock of the end, with a red guard in front and a red rock behind the button. You need to score a point!"
   },
