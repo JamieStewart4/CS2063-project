@@ -22,7 +22,7 @@
     <Button
         android:id="@+id/switch_color_button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="58dp"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="18dp"
@@ -32,10 +32,10 @@
     <Button
         android:id="@+id/rock_button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="59dp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="16dp"
-        android:layout_alignParentEnd="true"
         android:text="@string/creator_remove_rocks_mode" />
 
     <Button
@@ -45,7 +45,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="1dp"
+        android:layout_marginEnd="5dp"
         android:layout_marginBottom="17dp"
+        android:layout_toStartOf="@+id/switch_color_button"
         android:text="@string/place_win_area" />
 
     <Button
@@ -54,6 +56,17 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:text="Reset Progress" />
+        
+    <Button
+        android:id="@+id/rectangle_win_area_button"
+        android:layout_width="136dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="83dp"
+        android:text="@string/creator_place_rec_win_area" />
 
 
 </RelativeLayout>

@@ -30,7 +30,7 @@ class PuzzleCreator : AppCompatActivity() {
 
     private var currentMode: Mode = Mode.PLACE_ROCKS // Default mode
     private enum class Mode {
-        PLACE_ROCKS, REMOVE_ROCKS, PLACE_WIN_AREA, REMOVE_WIN_AREA
+        PLACE_ROCKS, REMOVE_ROCKS, PLACE_CIRCLE_WIN_AREA, REMOVE_CIRCLE_WIN_AREA,  PLACE_RECTANGLE_WIN_AREA, REMOVE_RECTANGLE_WIN_AREA
     }
 
     private var startX = 0f
@@ -96,17 +96,36 @@ class PuzzleCreator : AppCompatActivity() {
         val winAreaButton = findViewById<Button>(R.id.win_area_button)
         winAreaButton.setOnClickListener {
             currentMode = when (currentMode) {
-                Mode.PLACE_WIN_AREA -> {
+                Mode.PLACE_CIRCLE_WIN_AREA -> {
                     winAreaButton.text = "Remove Win Areas"
-                    Mode.REMOVE_WIN_AREA
+                    Mode.REMOVE_CIRCLE_WIN_AREA
                 }
-                Mode.REMOVE_WIN_AREA -> {
+                Mode.REMOVE_CIRCLE_WIN_AREA -> {
                     winAreaButton.text = "Place Win Areas"
-                    Mode.PLACE_WIN_AREA
+                    Mode.PLACE_CIRCLE_WIN_AREA
                 }
                 else -> {
                     winAreaButton.text = "Place Win Areas"
-                    Mode.PLACE_WIN_AREA
+                    Mode.PLACE_CIRCLE_WIN_AREA
+                }
+            }
+            Log.i("PuzzleCreator", "Current mode: $currentMode")
+        }
+
+        val rectangleWinAreaButton = findViewById<Button>(R.id.rectangle_win_area_button)
+        rectangleWinAreaButton.setOnClickListener {
+            currentMode = when (currentMode) {
+                Mode.PLACE_RECTANGLE_WIN_AREA -> {
+                    rectangleWinAreaButton.text = "Remove Rectangle Win Areas"
+                    Mode.REMOVE_RECTANGLE_WIN_AREA
+                }
+                Mode.REMOVE_RECTANGLE_WIN_AREA -> {
+                    rectangleWinAreaButton.text = "Place Rectangle Win Areas"
+                    Mode.PLACE_RECTANGLE_WIN_AREA
+                }
+                else -> {
+                    rectangleWinAreaButton.text = "Place Rectangle Win Areas"
+                    Mode.PLACE_RECTANGLE_WIN_AREA
                 }
             }
             Log.i("PuzzleCreator", "Current mode: $currentMode")
@@ -114,45 +133,36 @@ class PuzzleCreator : AppCompatActivity() {
 
         // Set touch listener for layout
         layout.setOnTouchListener { _, event ->
-            if (event.action == MotionEvent.ACTION_DOWN) {
-                // Store the starting touch coordinates
-                val x = event.x
-                val y = event.y
-
-                // Handle different modes
-                when (currentMode) {
-                    Mode.PLACE_ROCKS -> addRock(x, y, layout)
-                    Mode.REMOVE_WIN_AREA -> {
-                        removeWinAreaAt(x, y, layout)
-                        return@setOnTouchListener true // Stop further propagation if a win area is removed
-                    }
-                    Mode.REMOVE_ROCKS -> {
-                        removeRockAt(x, y, layout)
-                        return@setOnTouchListener true // Stop further propagation if a rock is removed
-                    }
-                    else -> {
-                        startX = event.x
-                        startY = event.y
-                    }
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    startX = event.x
+                    startY = event.y
+                    true
                 }
-                true
-
-            } else if (event.action == MotionEvent.ACTION_UP) {
-                // Calculate the distance from the starting touch position (startX, startY) to the release position (event.x, event.y)
-                val radius = calculateDistance(startX, startY, event.x, event.y)
-
-                // If we are in "Place Win Area" mode, add the win area with the dynamic radius
-                if (currentMode == Mode.PLACE_WIN_AREA) {
-                    addWinArea(startX, startY, radius, layout)
+                MotionEvent.ACTION_UP -> {
+                    val endX = event.x
+                    val endY = event.y
+                    when (currentMode) {
+                        Mode.PLACE_ROCKS -> addRock(startX, startY, layout)
+                        Mode.REMOVE_ROCKS -> removeRockAt(startX, startY, layout)
+                        Mode.PLACE_CIRCLE_WIN_AREA -> {
+                            val radius = calculateDistance(startX, startY, endX, endY)
+                            addCircleWinArea(startX, startY, radius, layout)
+                        }
+                        Mode.REMOVE_CIRCLE_WIN_AREA -> removeCircleWinAreaAt(startX, startY, layout)
+                        Mode.PLACE_RECTANGLE_WIN_AREA -> {
+                            addRectangleWinArea(startX, startY, endX, endY, layout)
+                        }
+                        Mode.REMOVE_RECTANGLE_WIN_AREA -> removeRectangleWinAreaAt(startX, startY, layout)
+                    }
                     startX = 0f
                     startY = 0f
+                    true
                 }
-
-                true
-            } else {
-                false
+                else -> false
             }
         }
+
 
     }
     // Function to calculate the distance between two points
@@ -221,7 +231,7 @@ class PuzzleCreator : AppCompatActivity() {
     }
 
     // Function to add a win circle to the screen
-    private fun addWinArea(x: Float, y: Float, radius: Float, layout: RelativeLayout) {
+    private fun addCircleWinArea(x: Float, y: Float, radius: Float, layout: RelativeLayout) {
         val winCircleView = View(this)
 
         // Set the size of the win circle
@@ -257,7 +267,7 @@ class PuzzleCreator : AppCompatActivity() {
 
         // Add a click listener for removing the win area
         winCircleView.setOnClickListener {
-            if (currentMode == Mode.REMOVE_WIN_AREA) {
+            if (currentMode == Mode.REMOVE_CIRCLE_WIN_AREA) {
                 layout.removeView(winCircleView)
                 winAreaList.remove(winAreaDetails)
                 Log.i("PuzzleCreator", "Win area removed: $winAreaDetails")
@@ -268,7 +278,7 @@ class PuzzleCreator : AppCompatActivity() {
         winAreaList.add(winAreaDetails)
     }
 
-    private fun removeWinAreaAt(x: Float, y: Float, layout: RelativeLayout) {
+    private fun removeCircleWinAreaAt(x: Float, y: Float, layout: RelativeLayout) {
         val iterator = winAreaList.iterator()
         while (iterator.hasNext()) {
             val winArea = iterator.next()
@@ -296,6 +306,82 @@ class PuzzleCreator : AppCompatActivity() {
         }
         Log.w("PuzzleCreator", "No win area found near: ($x, $y)")
     }
+
+    private fun addRectangleWinArea(
+        x1: Float, y1: Float,
+        x2: Float, y2: Float,
+        layout: RelativeLayout
+    ) {
+        val winRectangleView = View(this)
+
+        val left = minOf(x1, x2)
+        val top = minOf(y1, y2)
+        val right = maxOf(x1, x2)
+        val bottom = maxOf(y1, y2)
+
+        val layoutParams = RelativeLayout.LayoutParams(
+            (right - left).toInt(),
+            (bottom - top).toInt()
+        ).apply {
+            leftMargin = left.toInt()
+            topMargin = top.toInt()
+        }
+
+        val rectangleDrawable = GradientDrawable().apply {
+            shape = GradientDrawable.RECTANGLE
+            setColor(Color.parseColor("#8033CC33")) // Semi-transparent green
+        }
+        winRectangleView.background = rectangleDrawable
+        winRectangleView.layoutParams = layoutParams
+
+        val winAreaDetails = mapOf(
+            "type" to "rectangle",
+            "x1" to left,
+            "y1" to top,
+            "x2" to right,
+            "y2" to bottom
+        )
+        winRectangleView.tag = winAreaDetails
+
+        winRectangleView.setOnClickListener {
+            if (currentMode == Mode.REMOVE_RECTANGLE_WIN_AREA) {
+                layout.removeView(winRectangleView)
+                winAreaList.remove(winAreaDetails)
+                Log.i("PuzzleCreator", "Rectangle win area removed: $winAreaDetails")
+            }
+        }
+
+        layout.addView(winRectangleView)
+        winAreaList.add(winAreaDetails)
+    }
+
+    private fun removeRectangleWinAreaAt(x: Float, y: Float, layout: RelativeLayout) {
+        val iterator = winAreaList.iterator()
+        while (iterator.hasNext()) {
+            val winArea = iterator.next()
+            if (winArea["type"] == "rectangle") {
+                val x1 = winArea["x1"] as Float
+                val y1 = winArea["y1"] as Float
+                val x2 = winArea["x2"] as Float
+                val y2 = winArea["y2"] as Float
+
+                if (x in x1..x2 && y in y1..y2) {
+                    val childToRemove = layout.children.find { child ->
+                        child.tag == winArea
+                    }
+                    if (childToRemove != null) {
+                        layout.removeView(childToRemove)
+                        iterator.remove()
+                        Log.i("PuzzleCreator", "Rectangle win area removed at: ($x1, $y1), ($x2, $y2)")
+                    }
+                    return
+                }
+            }
+        }
+        Log.w("PuzzleCreator", "No rectangle win area found near: ($x, $y)")
+    }
+
+
 
     // Function to save data (rocks and win circles) to JSON
     private fun saveDataToJson() {
