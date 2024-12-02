@@ -88,6 +88,7 @@ class PuzzleMode: AppCompatActivity() {
             3 -> R.raw.level_3
             4 -> R.raw.level_4
             5 -> R.raw.level_5
+            6 -> R.raw.level_6
             //ADD LEVELS AS WE CREATE THEM LIKE ABOVE
             else -> {
                 Log.e("PuzzleMode", "No JSON file mapped for puzzle ID: $puzzleId")

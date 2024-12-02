@@ -56,6 +56,11 @@ class PuzzleCreator : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val resetButton = findViewById<Button>(R.id.reset_all_progress)
+        resetButton.setOnClickListener {
+            resetAllProgress()
+        }
+
         // Switch Color button functionality
         val switchColorButton = findViewById<Button>(R.id.switch_color_button)
         switchColorButton.setOnClickListener {
@@ -316,4 +321,15 @@ class PuzzleCreator : AppCompatActivity() {
             Log.e("PuzzleCreator", "Error saving data: ${e.message}")
         }
     }
+
+    private fun resetAllProgress() {
+        val preferences = getSharedPreferences("level_status", MODE_PRIVATE)
+        with (preferences.edit()) {
+            for (i in 1..18) {
+                putBoolean(i.toString(), false)
+            }
+            apply()
+        }
+    }
+
 }

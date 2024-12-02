@@ -1,0 +1,32 @@
+{
+  "rocks":[
+    {
+      "colour":"RED",
+      "x":471.0,
+      "y":274.0
+    },
+    {
+      "colour":"YELLOW",
+      "x":476.0,
+      "y":1156.0
+    }
+  ],
+  "winArea":[
+    {
+      "type":"rectangle",
+      "left":488.0,
+      "top":1472.0,
+      "right":600.0,
+      "bottom":1951.0
+    }
+  ],
+  "rockSequence": [
+
+  ],
+  "infoDescription": {
+    "description": "This is the last end of the game, and you are desperately trying to steal a point. You have a center guard, but you need to further reinforce it."
+  },
+  "solutionDescription": {
+    "description": "Using double center guards, especially when they are perfectly lined up in a straight line, gives you the best chance at stealing a point when it's needed most at the end of a close game."
+  }
+}
