@@ -47,7 +47,7 @@ class RockReader {
     }
 
     // Wrapper class to take array from rocks object in json file
-    data class RockListWrapper(val rocks: List<Rock>)
+    data class RockListWrapper(val rocks: MutableList<Rock>)
 
     // Wrapper class to take array of rock sequence in json file for multi rock solutions
     data class RockSequenceListWrapper(val rockSequence: List<Rock>)
@@ -68,7 +68,7 @@ class RockReader {
     }
 
     // Parse lines of json string to create a list of rocks
-    fun parseJSONToList(jsonString: String): List<Rock> {
+    fun parseJSONToList(jsonString: String): MutableList<Rock> {
         val gson = Gson()
         val rockListWrapper = gson.fromJson(jsonString, RockListWrapper::class.java)
         return rockListWrapper.rocks
