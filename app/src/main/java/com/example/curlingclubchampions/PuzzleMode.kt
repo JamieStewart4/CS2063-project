@@ -62,6 +62,7 @@ class PuzzleMode: AppCompatActivity() {
 
     private lateinit var checkmark: ImageView
     private lateinit var exclamationMark: ImageView
+    private lateinit var redX: ImageView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -192,6 +193,7 @@ class PuzzleMode: AppCompatActivity() {
 
         checkmark = findViewById(R.id.checkmark)
         exclamationMark = findViewById(R.id.exclamation_mark)
+        redX = findViewById(R.id.red_x)
 
     }
 
@@ -273,6 +275,7 @@ class PuzzleMode: AppCompatActivity() {
 
         checkmark.visibility = ImageView.INVISIBLE
         exclamationMark.visibility = ImageView.INVISIBLE
+        redX.visibility = ImageView.INVISIBLE
 
 
         // Handle tap to move functionality
@@ -355,12 +358,14 @@ class PuzzleMode: AppCompatActivity() {
             if (!winAreaRect.contains((moveRockView.x + rockWidth / 2).toInt(),
                     (moveRockView.y + rockWidth / 2).toInt()
                 )) {
+                showRedX()
                 Toast.makeText(this, "Incorrect!", Toast.LENGTH_SHORT).show()
                 return
             }
         } else if (winArea.type == "circle") {
             // Use Circle rock function to check if not inside
            if (!winAreaCirc.rockInWinArea(moveRockView, rockWidth, rockHeight)) {
+               showRedX()
                Toast.makeText(this, "Incorrect!", Toast.LENGTH_SHORT).show()
                return
            }
@@ -384,6 +389,13 @@ class PuzzleMode: AppCompatActivity() {
             continueRockSequence()
         }
 
+    }
+
+    private fun showRedX() {
+        redX.x = (moveRockView.x + rockWidth / 1.5).toFloat()
+        redX.y = moveRockView.y - rockHeight
+        redX.visibility = ImageView.VISIBLE
+        redX.bringToFront()
     }
 
     private fun continueRockSequence()
