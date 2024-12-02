@@ -4,16 +4,17 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
-import android.media.Image
 import android.os.Bundle
 import android.util.Log
 import android.view.GestureDetector
 import android.view.GestureDetector.SimpleOnGestureListener
+import android.view.Gravity
 import android.view.MotionEvent
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RelativeLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -86,6 +87,7 @@ class PuzzleMode: AppCompatActivity() {
             2 -> R.raw.level_2
             3 -> R.raw.level_3
             4 -> R.raw.level_4
+            5 -> R.raw.level_5
             //ADD LEVELS AS WE CREATE THEM LIKE ABOVE
             else -> {
                 Log.e("PuzzleMode", "No JSON file mapped for puzzle ID: $puzzleId")
@@ -149,7 +151,13 @@ class PuzzleMode: AppCompatActivity() {
         val infoButton: Button = findViewById(R.id.info_button)
 
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Level $puzzleId")
+        val dialogTitleTextView = TextView(this).apply {
+            text = "Level $puzzleId"
+            textSize = 24f
+            gravity = Gravity.CENTER
+            setPadding(0, 20, 0, 10)
+        }
+        builder.setCustomTitle(dialogTitleTextView)
         builder.setMessage(infoDesc.description)  // Assuming infoDesc is of type InfoDesc
         builder.setPositiveButton("Start") { dialog, _ -> dialog.dismiss() }
         builder.create().show()
