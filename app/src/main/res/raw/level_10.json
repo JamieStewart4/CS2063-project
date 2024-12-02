@@ -1,0 +1,43 @@
+{
+  "rocks":[
+    {
+      "colour":"RED",
+      "x":720.0,
+      "y":1424.0
+    },
+    {
+      "colour":"YELLOW",
+      "x":469.0,
+      "y":603.0
+    }
+  ],
+  "winArea":[
+    {
+      "type":"rectangle",
+      "left":512.0,
+      "top":1262.0,
+      "right":567.0,
+      "bottom":1684.0
+    },
+    {
+      "type":"rectangle",
+      "left":504.0,
+      "top":734.0,
+      "right":567.0,
+      "bottom":863.0
+    }
+  ],
+  "rockSequence": [
+    {
+      "colour":"RED",
+      "x":754.0,
+      "y":611.0
+    }
+  ],
+  "infoDescription": {
+    "description": "We will now consider sequences of multiple rocks.\nStarting from the 3rd rock of the end, you do not have hammer and you threw your first rock into the house. Your opponent throws a corner guard, with the intention of ignoring everything to the middle and going to the outsides. How do you set yourself up to put the most pressure on the other team?"
+  },
+  "solutionDescription": {
+    "description": "Setting up a center guard to defend your rock, then putting another rock behind your guard is the best way to put pressure on the other team, since they will need to be removing your guards the entire end."
+  }
+}
