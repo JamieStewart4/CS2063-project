@@ -71,6 +71,9 @@ class PuzzleMode: AppCompatActivity() {
         // Back button functionality
         val backButton = findViewById<ImageButton>(R.id.back_button)
         backButton.setOnClickListener {
+            val intent = Intent(this, PuzzleSelect::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
             finish()
         }
 
@@ -91,6 +94,7 @@ class PuzzleMode: AppCompatActivity() {
             3 -> R.raw.level_3
             4 -> R.raw.level_4
             5 -> R.raw.level_5
+            6 -> R.raw.level_6
             //ADD LEVELS AS WE CREATE THEM LIKE ABOVE
             else -> {
                 Log.e("PuzzleMode", "No JSON file mapped for puzzle ID: $puzzleId")

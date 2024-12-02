@@ -53,6 +53,9 @@ class PuzzleComplete: AppCompatActivity() {
         // Back button (goes back to select mode screen for demo)
         val backButton = findViewById<ImageButton>(R.id.back_button)
         backButton.setOnClickListener {
+            val intent = Intent(this, PuzzleSelect::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
             finish()
         }
 
