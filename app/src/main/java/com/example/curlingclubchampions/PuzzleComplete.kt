@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 
 class PuzzleComplete: AppCompatActivity() {
 
@@ -18,6 +19,8 @@ class PuzzleComplete: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.puzzle_complete_screen)
+
+        window.statusBarColor = ContextCompat.getColor(this, R.color.button)
 
         puzzleID = intent.getIntExtra("PUZZLE_ID", -1)
 

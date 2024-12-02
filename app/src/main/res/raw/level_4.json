@@ -1,0 +1,33 @@
+{
+  "rocks":
+  [
+    {
+      "colour":"RED",
+      "x":279.0,
+      "y":1363.0},
+    {
+      "colour":"YELLOW",
+      "x":216.0,
+      "y":645.0
+    }
+  ],
+  "winArea":
+  [
+    {
+      "type":"rectangle",
+      "left":680.0,
+      "top":582.0,
+      "right":1020.0,
+      "bottom":780.0
+    }
+  ],
+  "rockSequence": [
+
+  ],
+  "infoDescription": {
+    "description": "You have a yellow rock behind a corner guard on the left side. Position your rock in the best way so the other team cannot take out both of your rocks at once!"
+  },
+  "solutionDescription": {
+    "description": "Placing your rock on the right side of the house like this allows for enough distance so the other team cannot throw a double on your two rocks. This is called \"splitting\" the house!"
+  }
+}

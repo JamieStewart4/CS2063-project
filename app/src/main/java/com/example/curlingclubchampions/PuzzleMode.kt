@@ -17,6 +17,7 @@ import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.curlingclubchampions.Rock.RockReader
 import com.example.curlingclubchampions.Rock.WinCircle
 import kotlin.math.pow
@@ -61,6 +62,8 @@ class PuzzleMode: AppCompatActivity() {
         setContentView(R.layout.puzzle_mode)
         val layout = findViewById<RelativeLayout>(R.id.puzzle_relative_layout)
 
+        window.statusBarColor = ContextCompat.getColor(this, R.color.game_background)
+
         // Back button functionality
         val backButton = findViewById<ImageButton>(R.id.back_button)
         backButton.setOnClickListener {
@@ -82,6 +85,7 @@ class PuzzleMode: AppCompatActivity() {
             1 -> R.raw.level_1
             2 -> R.raw.level_2
             3 -> R.raw.level_3
+            4 -> R.raw.level_4
             //ADD LEVELS AS WE CREATE THEM LIKE ABOVE
             else -> {
                 Log.e("PuzzleMode", "No JSON file mapped for puzzle ID: $puzzleId")

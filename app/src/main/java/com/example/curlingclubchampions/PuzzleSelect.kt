@@ -1,11 +1,13 @@
 package com.example.curlingclubchampions
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.curlingclubchampions.adapters.PuzzlePagerAdapter
 
@@ -13,6 +15,8 @@ class PuzzleSelect : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.puzzle_select)
+
+        window.statusBarColor = ContextCompat.getColor(this, R.color.button)
 
         val dotsLayout = findViewById<LinearLayout>(R.id.dots_layout)
         dotsLayout.visibility = View.VISIBLE
