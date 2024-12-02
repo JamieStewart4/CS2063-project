@@ -2,38 +2,33 @@
   "rocks":
   [
     {
-      "colour":"RED",
-      "x":810.52734375,
-      "y":1385.3544921875
-    },
-    {
-      "colour":"RED",
-      "x":162.94921875,
-      "y":466.150390625
+      "x": 436,
+      "y": 1100,
+      "colour": "RED"
     },
     {
       "colour":"YELLOW",
-      "x":473.890625,
-      "y":639.806640625
+      "x":808.0,
+      "y":1464.0
     }
-  ],
-  "rockSequence": [
-
   ],
   "winArea":
   [
     {
       "type":"rectangle",
-      "left":498.33984,
-      "top":1207.1123,
-      "right":582.978515625,
-      "bottom":1778.4013671875
+      "left":813.0,
+      "top":527.0,
+      "right":960.0,
+      "bottom":979.0
     }
   ],
+  "rockSequence": [
+
+  ],
   "infoDescription": {
-    "description": "You are throwing your last rock of the end, but the other team has hammer. Protect your yellow rock so the other team cannot hit it!"
+    "description": "This is the third rock of the end. You have hammer and a corner guard on the right side, and you want to move the play away from the center of the house."
   },
   "solutionDescription": {
-    "description": "A well-placed guard is great for protecting your stones in the house. As long as the guard is covering the majority of the rock in the house, the other team will have a hard time removing it!"
+    "description": "Using your corner guard to bury a rock behind it allows you to direct the play to the sides of the house, which is ideal when you have hammer. Your opponent still may go behind the red center guard, but you could have an opportunity for multiple points!"
   }
 }
