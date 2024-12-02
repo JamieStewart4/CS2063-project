@@ -59,6 +59,7 @@ class PuzzleMode: AppCompatActivity() {
 
     private var currentRockSequence = 0
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -350,7 +351,8 @@ class PuzzleMode: AppCompatActivity() {
         }
         // else there must be more rock sequence
         else{
-            rockList.add(moveRock)
+            val placedRock = RockReader.Rock(RockReader.Colour.YELLOW, moveRockView.x.toDouble(), moveRockView.y.toDouble())
+            rockList.add(placedRock)
             continueRockSequence()
         }
 
@@ -361,7 +363,9 @@ class PuzzleMode: AppCompatActivity() {
         currentRockSequence++
         winArea = winAreaList[currentRockSequence]
 
-        val newRock = createImageViewFromRock(rockSequence[currentRockSequence])
+        val nextRock = rockSequence[currentRockSequence - 1]
+        rockList.add(nextRock)
+        val newRock = createImageViewFromRock(nextRock)
         val layout = findViewById<RelativeLayout>(R.id.puzzle_relative_layout)
         layout.addView(newRock)
 
@@ -374,14 +378,13 @@ class PuzzleMode: AppCompatActivity() {
         // Set win area
         createWinArea(winArea)
 
-
         // Dimensions for drawable for moving rocks
         moveRockView.post {
             rockHeight = moveRockView.measuredHeight
             rockWidth = moveRockView.measuredWidth
         }
 
-        Log.i("PuzzleMode", "height = $rockHeight , width = $rockWidth")
+        Log.i("continueRockSequence", "height = $rockHeight , width = $rockWidth")
 
         gestureDetector = GestureDetector(this, MyGestureListener())
 
@@ -389,6 +392,22 @@ class PuzzleMode: AppCompatActivity() {
         val solveButton = findViewById<Button>(R.id.temp_solve_button)
         solveButton.setOnClickListener {
             checkSolution()
+        }
+
+        val infoButton: Button = findViewById(R.id.info_button)
+
+        infoButton.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            val dialogTitleTextView = TextView(this).apply {
+                text = "Level $puzzleId"
+                textSize = 24f
+                gravity = Gravity.CENTER
+                setPadding(0, 20, 0, 10)
+            }
+            builder.setCustomTitle(dialogTitleTextView)
+            builder.setMessage(infoDesc.description)  // Assuming infoDesc is of type InfoDesc
+            builder.setPositiveButton("Close") { dialog, _ -> dialog.dismiss() }
+            builder.create().show()
         }
     }
 }
