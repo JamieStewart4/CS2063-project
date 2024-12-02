@@ -12,6 +12,20 @@
         android:layout_height="match_parent"
         app:srcCompat="@drawable/screenshot_2024_10_21_at_2_42_45_pm" />
 
+    <ImageView
+        android:id="@+id/checkmark"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/checkmark" />
+
+    <ImageView
+        android:id="@+id/exclamation_mark"
+        android:visibility="invisible"
+        android:layout_width="24dp"
+        android:layout_height="64dp"
+        app:srcCompat="@drawable/exclamation_mark_yellow" />
+
     <ImageButton
         android:id="@+id/back_button"
         android:layout_width="wrap_content"

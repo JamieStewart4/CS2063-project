@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.curlingclubchampions.Rock.RockReader
 import com.example.curlingclubchampions.Rock.WinCircle
+import kotlin.math.abs
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -58,6 +59,9 @@ class PuzzleMode: AppCompatActivity() {
     private var rockWidth: Int = 0
 
     private var currentRockSequence = 0
+
+    private lateinit var checkmark: ImageView
+    private lateinit var exclamationMark: ImageView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -185,6 +189,10 @@ class PuzzleMode: AppCompatActivity() {
             builder.setPositiveButton("Close") { dialog, _ -> dialog.dismiss() }
             builder.create().show()
         }
+
+        checkmark = findViewById(R.id.checkmark)
+        exclamationMark = findViewById(R.id.exclamation_mark)
+
     }
 
     private fun createImageViewFromRock(rock: RockReader.Rock): ImageView {
@@ -262,6 +270,10 @@ class PuzzleMode: AppCompatActivity() {
         if (gestureDetector.onTouchEvent(event)) {
             return true
         }
+
+        checkmark.visibility = ImageView.INVISIBLE
+        exclamationMark.visibility = ImageView.INVISIBLE
+
 
         // Handle tap to move functionality
         if (event.action == MotionEvent.ACTION_DOWN) {
@@ -379,8 +391,23 @@ class PuzzleMode: AppCompatActivity() {
         currentRockSequence++
         winArea = winAreaList[currentRockSequence]
 
+        // Move checkmark to previously placed rock to indicate success
+        checkmark.x = moveRockView.x + rockWidth / 2
+        checkmark.y = moveRockView.y - rockHeight
+        checkmark.visibility = ImageView.VISIBLE
+        checkmark.bringToFront()
+
         val nextRock = rockSequence[currentRockSequence - 1]
         rockList.add(nextRock)
+
+        // Move exclamation mark to newly added rock in sequence to indicate update
+        exclamationMark.x = nextRock.x.toFloat() + rockWidth / 2
+        exclamationMark.y = (nextRock.y - rockHeight * 1.25).toFloat()
+        exclamationMark.visibility = ImageView.VISIBLE
+        exclamationMark.bringToFront()
+
+        checkIndicatorCollision()
+
         val newRock = createImageViewFromRock(nextRock)
         val layout = findViewById<RelativeLayout>(R.id.puzzle_relative_layout)
         layout.addView(newRock)
@@ -395,5 +422,15 @@ class PuzzleMode: AppCompatActivity() {
         createWinArea(winArea)
 
         Log.i("continueRockSequence", "height = $rockHeight , width = $rockWidth")
+    }
+
+    // Reposition exclamation mark indicator if it is too close to checkmark
+    private fun checkIndicatorCollision() {
+        if (abs(checkmark.x - exclamationMark.x) < rockWidth) {
+            if (abs(exclamationMark.y - checkmark.y) < rockHeight * 1.25) {
+                exclamationMark.x = moveRockView.x + rockWidth
+                exclamationMark.y = moveRockView.y + rockHeight / 2
+            }
+        }
     }
 }
