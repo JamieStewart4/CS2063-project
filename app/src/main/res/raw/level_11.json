@@ -1,0 +1,50 @@
+{
+  "rocks":[
+    {
+      "colour":"RED",
+      "x":478.0,
+      "y":1457.0
+    }
+  ],
+  "winArea":[
+    {
+      "type":"rectangle",
+      "left":508.0,
+      "top":618.0,
+      "right":575.0,
+      "bottom":696.0
+    },
+    {
+      "type":"rectangle",
+      "left":491.0,
+      "top":872.0,
+      "right":646.0,
+      "bottom":994.0
+    },
+    {
+      "type":"rectangle",
+      "left":403.0,
+      "top":533.0,
+      "right":483.0,
+      "bottom":600.0
+    }
+  ],
+  "rockSequence": [
+    {
+      "colour":"RED",
+      "x":503.0,
+      "y":729.0
+    },
+    {
+      "colour":"RED",
+      "x":392.0,
+      "y":420.0
+    }
+  ],
+  "infoDescription": {
+    "description": "You have hammer. Starting from your first rock of the end, how do you position the next three rocks behind the center guard?"
+  },
+  "solutionDescription": {
+    "description": "You were able to capitalize on the other team's miss on the last rock, so you are sitting two, leaving the other team chasing and needing to make a saving shot."
+  }
+}
