@@ -95,6 +95,8 @@ class PuzzleMode: AppCompatActivity() {
             4 -> R.raw.level_4
             5 -> R.raw.level_5
             6 -> R.raw.level_6
+            7 -> R.raw.level_7
+            8 -> R.raw.level_8
             //ADD LEVELS AS WE CREATE THEM LIKE ABOVE
             else -> {
                 Log.e("PuzzleMode", "No JSON file mapped for puzzle ID: $puzzleId")
@@ -170,6 +172,13 @@ class PuzzleMode: AppCompatActivity() {
         builder.create().show()
 
         infoButton.setOnClickListener {
+            val newTitleTextView = TextView(this).apply {
+                text = "Level $puzzleId"
+                textSize = 24f
+                gravity = Gravity.CENTER
+                setPadding(0, 20, 0, 10)
+            }
+            builder.setCustomTitle(newTitleTextView)
             builder.setPositiveButton("Close") { dialog, _ -> dialog.dismiss() }
             builder.create().show()
         }
@@ -382,36 +391,6 @@ class PuzzleMode: AppCompatActivity() {
         // Set win area
         createWinArea(winArea)
 
-        // Dimensions for drawable for moving rocks
-        moveRockView.post {
-            rockHeight = moveRockView.measuredHeight
-            rockWidth = moveRockView.measuredWidth
-        }
-
         Log.i("continueRockSequence", "height = $rockHeight , width = $rockWidth")
-
-        gestureDetector = GestureDetector(this, MyGestureListener())
-
-        // Solve button
-        val solveButton = findViewById<Button>(R.id.temp_solve_button)
-        solveButton.setOnClickListener {
-            checkSolution()
-        }
-
-        val infoButton: Button = findViewById(R.id.info_button)
-
-        infoButton.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
-            val dialogTitleTextView = TextView(this).apply {
-                text = "Level $puzzleId"
-                textSize = 24f
-                gravity = Gravity.CENTER
-                setPadding(0, 20, 0, 10)
-            }
-            builder.setCustomTitle(dialogTitleTextView)
-            builder.setMessage(infoDesc.description)  // Assuming infoDesc is of type InfoDesc
-            builder.setPositiveButton("Close") { dialog, _ -> dialog.dismiss() }
-            builder.create().show()
-        }
     }
 }

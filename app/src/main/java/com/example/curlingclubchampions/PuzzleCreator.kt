@@ -336,10 +336,10 @@ class PuzzleCreator : AppCompatActivity() {
 
         val winAreaDetails = mapOf(
             "type" to "rectangle",
-            "x1" to left,
-            "y1" to top,
-            "x2" to right,
-            "y2" to bottom
+            "left" to left,
+            "top" to top,
+            "right" to right,
+            "bottom" to bottom
         )
         winRectangleView.tag = winAreaDetails
 

@@ -1,0 +1,47 @@
+{
+  "rocks":[
+    {
+      "colour":"YELLOW",
+      "x":452.0,
+      "y":628.0
+    },
+    {
+      "colour":"YELLOW",
+      "x":473.0,
+      "y":1369.0
+    },
+    {
+      "colour":"YELLOW",
+      "x":612.0,
+      "y":1202.0
+    },
+    {
+      "colour":"RED",
+      "x":842.0,
+      "y":461.0
+    },
+    {
+      "colour":"RED",
+      "x":330.0,
+      "y":890.0
+    }
+  ],
+  "winArea":[
+    {
+      "type":"rectangle",
+      "left":332.0,
+      "top":1136.0,
+      "right":424.0,
+      "bottom":1843.0
+    }
+  ],
+  "rockSequence": [
+
+  ],
+  "infoDescription": {
+    "description": "This is your last rock of the end, and you do not have hammer. How do you best protect your one yellow rock from being removed from the button?"
+  },
+  "solutionDescription": {
+    "description": "Putting up a guard to block the other team from raising their red rock into your yellow rock is the best decision, since it blocks the only easy option for the red team to score."
+  }
+}
