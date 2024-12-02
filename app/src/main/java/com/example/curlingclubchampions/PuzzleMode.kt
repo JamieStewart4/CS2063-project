@@ -34,7 +34,7 @@ class PuzzleMode: AppCompatActivity() {
 
     private var puzzleId = -1
     // List of rocks drawn on screen
-    private lateinit var rockList: List<RockReader.Rock>
+    private var rockList = mutableListOf<RockReader.Rock>()
     // List of win areas for this puzzle
     private lateinit var winAreaList: List<RockReader.WinArea>
     // Current active win area
@@ -56,6 +56,8 @@ class PuzzleMode: AppCompatActivity() {
 
     private var rockHeight: Int = 0
     private var rockWidth: Int = 0
+
+    private var currentRockSequence = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -110,7 +112,7 @@ class PuzzleMode: AppCompatActivity() {
         rockList = rockReader.parseJSONToList(jsonString)
         winAreaList = rockReader.parseJSONToWinArea(jsonString)
         // temporary: win area is just index 0 until multi rock logic is done
-        winArea = winAreaList[0]
+        winArea = winAreaList[currentRockSequence]
 
         // Get sequence of rocks to be added for multi rock solutions
         rockSequence = rockReader.parseJSONToSequenceList(jsonString)
@@ -339,10 +341,55 @@ class PuzzleMode: AppCompatActivity() {
             finish()
         }
         // Else, rock must be in win area
-        val intent = Intent(this@PuzzleMode, PuzzleComplete::class.java)
-        intent.putExtra("PUZZLE_ID", puzzleId)
-        intent.putExtra("SOLUTION", solutionDesc.description) // Get string from description
-        finish()
-        startActivity(intent)
+        // check if sequence is complete
+        if(currentRockSequence + 1 == winAreaList.size) {
+            val intent = Intent(this@PuzzleMode, PuzzleComplete::class.java)
+            intent.putExtra("PUZZLE_ID", puzzleId)
+            intent.putExtra("SOLUTION", solutionDesc.description) // Get string from description
+            finish()
+            startActivity(intent)
+        }
+        // else there must be more rock sequence
+        else{
+            rockList.add(moveRock)
+            continueRockSequence()
+        }
+
+    }
+
+    private fun continueRockSequence()
+    {
+        currentRockSequence++
+        winArea = winAreaList[currentRockSequence]
+
+        val newRock = createImageViewFromRock(rockSequence[currentRockSequence])
+        val layout = findViewById<RelativeLayout>(R.id.puzzle_relative_layout)
+        layout.addView(newRock)
+
+        // Create moveable rock
+        moveRock = RockReader.Rock(RockReader.Colour.YELLOW, 475.0, 1900.0)
+        // Create image view for moveable rock
+        moveRockView = createImageViewFromRock(moveRock)
+        layout.addView(moveRockView)
+
+        // Set win area
+        createWinArea(winArea)
+
+
+        // Dimensions for drawable for moving rocks
+        moveRockView.post {
+            rockHeight = moveRockView.measuredHeight
+            rockWidth = moveRockView.measuredWidth
+        }
+
+        Log.i("PuzzleMode", "height = $rockHeight , width = $rockWidth")
+
+        gestureDetector = GestureDetector(this, MyGestureListener())
+
+        // Solve button
+        val solveButton = findViewById<Button>(R.id.temp_solve_button)
+        solveButton.setOnClickListener {
+            checkSolution()
+        }
     }
 }
