@@ -23,6 +23,7 @@ class PuzzleComplete: AppCompatActivity() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.button)
 
         puzzleID = intent.getIntExtra("PUZZLE_ID", -1)
+        var solutionDesc = intent.getStringExtra("SOLUTION")
 
         // Update completion status for this level
         val preferences = getSharedPreferences("level_status", MODE_PRIVATE)
@@ -70,6 +71,9 @@ class PuzzleComplete: AppCompatActivity() {
 
         val congratsLevelTextView = findViewById<TextView>(R.id.congratulations_info)
         congratsLevelTextView.text = "Level $puzzleID ($difficulty) complete."
+
+        val solutionDescriptionTextView = findViewById<TextView>(R.id.solutionDescriptionText)
+        solutionDescriptionTextView.text = solutionDesc
 
         val starInfoTextView = findViewById<TextView>(R.id.starProgress)
         val totalStars = updateTotalStars(preferences)

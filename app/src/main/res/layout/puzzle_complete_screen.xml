@@ -34,6 +34,19 @@
         android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/solutionDescriptionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_below="@id/congratulations_info"
+        android:fontFamily="@font/aldrich"
+        android:typeface="monospace"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="18sp"/>
+
+    <TextView
         android:id="@+id/congratulations_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
         android:gravity="center"
-        android:layout_above="@id/star_large"
+        android:layout_below="@id/star_large"
         android:layout_centerHorizontal="true"
         android:text="@string/star_progress"
         android:fontFamily="@font/aldrich"
