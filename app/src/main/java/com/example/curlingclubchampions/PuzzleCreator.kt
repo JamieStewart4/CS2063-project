@@ -411,7 +411,7 @@ class PuzzleCreator : AppCompatActivity() {
     private fun resetAllProgress() {
         val preferences = getSharedPreferences("level_status", MODE_PRIVATE)
         with (preferences.edit()) {
-            for (i in 1..18) {
+            for (i in 1..15) {
                 putBoolean(i.toString(), false)
             }
             apply()

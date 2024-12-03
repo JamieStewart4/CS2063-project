@@ -105,13 +105,10 @@ class PuzzleMode: AppCompatActivity() {
             9 -> R.raw.level_9
             10 -> R.raw.level_10
             11 -> R.raw.level_11
-            //12 -> R.raw.level_12
+            12 -> R.raw.level_12
             13 -> R.raw.level_13
             14 -> R.raw.level_14
             //15 -> R.raw.level_15
-            //16 -> R.raw.level_16
-            //17 -> R.raw.level_17
-            //18 -> R.raw.level_18
 
             else -> {
                 Log.e("PuzzleMode", "No JSON file mapped for puzzle ID: $puzzleId")

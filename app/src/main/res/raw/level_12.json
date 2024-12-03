@@ -1,0 +1,58 @@
+{
+  "rocks":[
+    {
+      "colour":"RED",
+      "x":478.0,
+      "y":1398.0
+    },
+    {
+      "colour":"YELLOW",
+      "x":800.0,
+      "y":1239.0
+    },
+    {
+      "colour":"YELLOW",
+      "x":348.0,
+      "y":1151.0
+    },
+    {
+      "colour":"RED",
+      "x":92.0,
+      "y":402.0
+    },
+    {
+      "colour":"RED",
+      "x":293.0,
+      "y":946.0
+    }
+  ],
+  "winArea":[
+    {
+      "type":"rectangle",
+      "left":483.0,
+      "top":621.0,
+      "right":558.0,
+      "bottom":918.0
+    },
+    {
+      "type":"rectangle",
+      "left":667.0,
+      "top":1320.0,
+      "right":720.0,
+      "bottom":1802.0
+    }
+  ],
+  "rockSequence": [
+    {
+      "colour":"RED",
+      "x":607.0,
+      "y":955.0
+    }
+  ],
+  "infoDescription": {
+    "description": "You have two rocks left without hammer. You need to steal a point this end. Position your rocks to give yourself the highest chance of stealing!"
+  },
+  "solutionDescription": {
+    "description": "Blocking the hole for the red rock tap on the right side gives you the highest chance of stealing the end. The only shot the red team has is the very difficult runback on the center line."
+  }
+}

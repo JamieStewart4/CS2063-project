@@ -25,6 +25,26 @@
         android:layout_gravity="center">
 
         <Button
+            android:id="@+id/level_11"
+            style="@style/GridButtonStyle"
+            android:backgroundTint="@color/button"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:fontFamily="@font/aldrich"
+            android:typeface="monospace"
+            android:text="11" />
+
+        <Button
+            android:id="@+id/level_12"
+            style="@style/GridButtonStyle"
+            android:backgroundTint="@color/button"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:fontFamily="@font/aldrich"
+            android:typeface="monospace"
+            android:text="12" />
+
+        <Button
             android:id="@+id/level_13"
             style="@style/GridButtonStyle"
             android:backgroundTint="@color/button"
@@ -52,37 +72,9 @@
             android:textSize="24sp"
             android:fontFamily="@font/aldrich"
             android:typeface="monospace"
+            android:layout_gravity="center_horizontal"
+            android:layout_columnSpan="2"
             android:text="15" />
-
-        <Button
-            android:id="@+id/level_16"
-            style="@style/GridButtonStyle"
-            android:backgroundTint="@color/button"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:fontFamily="@font/aldrich"
-            android:typeface="monospace"
-            android:text="16" />
-
-        <Button
-            android:id="@+id/level_17"
-            style="@style/GridButtonStyle"
-            android:backgroundTint="@color/button"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:fontFamily="@font/aldrich"
-            android:typeface="monospace"
-            android:text="17" />
-
-        <Button
-            android:id="@+id/level_18"
-            style="@style/GridButtonStyle"
-            android:backgroundTint="@color/button"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:fontFamily="@font/aldrich"
-            android:typeface="monospace"
-            android:text="18" />
 
     </GridLayout>
 </LinearLayout>
