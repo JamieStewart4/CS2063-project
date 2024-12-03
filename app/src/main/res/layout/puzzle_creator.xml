@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/puzzle_relative_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/game_background">
 
     <ImageView
         android:id="@+id/imageView"
@@ -15,6 +16,11 @@
         android:id="@+id/save_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/button"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:fontFamily="@font/aldrich"
+        android:typeface="monospace"
         android:text="@string/creator_save" />
 
     <!-- Remove Rocks Button -->
@@ -27,6 +33,11 @@
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="18dp"
         android:layout_toStartOf="@id/rock_button"
+        android:backgroundTint="@color/button"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:fontFamily="@font/aldrich"
+        android:typeface="monospace"
         android:text="@string/creator_switch_color" />
 
     <Button
@@ -36,6 +47,11 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/button"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:fontFamily="@font/aldrich"
+        android:typeface="monospace"
         android:text="@string/creator_remove_rocks_mode" />
 
     <Button
@@ -47,6 +63,11 @@
         android:layout_marginStart="1dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="17dp"
+        android:backgroundTint="@color/button"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:fontFamily="@font/aldrich"
+        android:typeface="monospace"
         android:layout_toStartOf="@+id/switch_color_button"
         android:text="@string/place_win_area" />
 
@@ -55,6 +76,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
+        android:backgroundTint="@color/button"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:fontFamily="@font/aldrich"
+        android:typeface="monospace"
         android:text="Reset Progress" />
         
     <Button
@@ -65,7 +91,12 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="83dp"
+        android:layout_marginBottom="100dp"
+        android:backgroundTint="@color/button"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:fontFamily="@font/aldrich"
+        android:typeface="monospace"
         android:text="@string/creator_place_rec_win_area" />
 
 

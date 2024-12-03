@@ -54,7 +54,7 @@
 
   ],
   "infoDescription": {
-    "description": "This is the last end and you must steal a point to win. You have one more rock left without hammer. Your opponent currently has two shots to win. How do you block both potential shots with one rock?"
+    "description": "This is the last end and you must steal a point to win. You have one more rock left without hammer. Your opponent currently has two possible shots they can choose from to win. How do you block both potential shots with one rock?"
   },
   "solutionDescription": {
     "description": "Placing your rock tucked behind the other yellow rock gives it backing so it cannot be removed by either raising the top red or coming around the guard and tapping it. This essentially guarantees a steal."

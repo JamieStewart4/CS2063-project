@@ -14,6 +14,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import com.example.curlingclubchampions.Rock.RockReader
 import com.google.gson.Gson
@@ -42,6 +43,8 @@ class PuzzleCreator : AppCompatActivity() {
         setContentView(R.layout.puzzle_creator)
 
         val layout = findViewById<RelativeLayout>(R.id.puzzle_relative_layout)
+
+        window.statusBarColor = ContextCompat.getColor(this, R.color.game_background)
 
         // Initialize drawables for rock colors
         redRockDrawable = getDrawable(R.drawable.red_rock)
