@@ -1,0 +1,52 @@
+{
+  "rocks":[
+    {
+      "colour":"RED",
+      "x":486.0,
+      "y":1340.0
+    },
+    {
+      "colour":"RED",
+      "x":415.0,
+      "y":1712.0
+    },
+    {
+      "colour":"YELLOW",
+      "x":381.0,
+      "y":1244.0
+    },
+    {
+      "colour":"RED",
+      "x":415.0,
+      "y":628.0
+    },
+    {
+      "colour":"RED",
+      "x":524.0,
+      "y":980.0
+    },
+    {
+      "colour":"YELLOW",
+      "x":289.0,
+      "y":892.0
+    }
+  ],
+  "winArea":[
+    {
+      "type":"rectangle",
+      "left":665.0,
+      "top":910.0,
+      "right":790.0,
+      "bottom":1027.0
+    }
+  ],
+  "rockSequence": [
+
+  ],
+  "infoDescription": {
+    "description": "You have the hammer and two rocks left in this end. You need to score two points in this end. Where should you position your rock to guarantee you will have a chance at scoring two on your next shot?"
+  },
+  "solutionDescription": {
+    "description": "Placing a rock here allows for you to have two options to raise your yellow rock into the red in the center. Red will have no option but to guard one of the two yellow rocks."
+  }
+}

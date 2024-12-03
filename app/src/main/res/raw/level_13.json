@@ -1,0 +1,43 @@
+{
+  "rocks":[
+    {
+      "colour":"RED",
+      "x":172.0,
+      "y":1273.0
+    },
+    {
+      "colour":"YELLOW",
+      "x":482.0,
+      "y":1151.0
+    }
+  ],
+  "winArea":[
+    {
+      "type":"rectangle",
+      "left":403.0,
+      "top":1416.0,
+      "right":450.0,
+      "bottom":1810.0
+    },
+    {
+      "type":"rectangle",
+      "left":483.0,
+      "top":579.0,
+      "right":610.0,
+      "bottom":715.0
+    }
+  ],
+  "rockSequence": [
+    {
+      "colour":"RED",
+      "x":440.0,
+      "y":444.0
+    }
+  ],
+  "infoDescription": {
+    "description": "The other team has just thrown a corner guard on the left side. What is the best position to place your rock to block their path to the corner guard and force the play into the center?"
+  },
+  "solutionDescription": {
+    "description": "Blocking the corner guard forces the play into the center, making your opponent's corner guard useless."
+  }
+}

@@ -105,7 +105,14 @@ class PuzzleMode: AppCompatActivity() {
             9 -> R.raw.level_9
             10 -> R.raw.level_10
             11 -> R.raw.level_11
-            //ADD LEVELS AS WE CREATE THEM LIKE ABOVE
+            //12 -> R.raw.level_12
+            13 -> R.raw.level_13
+            14 -> R.raw.level_14
+            //15 -> R.raw.level_15
+            //16 -> R.raw.level_16
+            //17 -> R.raw.level_17
+            //18 -> R.raw.level_18
+
             else -> {
                 Log.e("PuzzleMode", "No JSON file mapped for puzzle ID: $puzzleId")
                 Toast.makeText(this, "This puzzle is not created yet.", Toast.LENGTH_SHORT).show()
@@ -413,12 +420,12 @@ class PuzzleMode: AppCompatActivity() {
         rockList.add(nextRock)
 
         // Move exclamation mark to newly added rock in sequence to indicate update
-        exclamationMark.x = nextRock.x.toFloat() + rockWidth / 2
+        exclamationMark.x = (nextRock.x.toFloat() + rockWidth / 1.5).toFloat()
         exclamationMark.y = (nextRock.y - rockHeight * 1.25).toFloat()
         exclamationMark.visibility = ImageView.VISIBLE
         exclamationMark.bringToFront()
 
-        checkIndicatorCollision()
+        checkIndicatorCollision(nextRock)
 
         val newRock = createImageViewFromRock(nextRock)
         val layout = findViewById<RelativeLayout>(R.id.puzzle_relative_layout)
@@ -437,11 +444,11 @@ class PuzzleMode: AppCompatActivity() {
     }
 
     // Reposition exclamation mark indicator if it is too close to checkmark
-    private fun checkIndicatorCollision() {
+    private fun checkIndicatorCollision(nextRock: RockReader.Rock) {
         if (abs(checkmark.x - exclamationMark.x) < rockWidth) {
             if (abs(exclamationMark.y - checkmark.y) < rockHeight * 1.25) {
-                exclamationMark.x = moveRockView.x + rockWidth
-                exclamationMark.y = moveRockView.y + rockHeight / 2
+                exclamationMark.x = (nextRock.x + rockWidth).toFloat()
+                exclamationMark.y = (nextRock.y).toFloat()
             }
         }
     }
