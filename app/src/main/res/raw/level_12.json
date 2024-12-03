@@ -1,0 +1,58 @@
+{
+  "rocks":[
+    {
+      "colour":"RED",
+      "x":478.0,
+      "y":1398.0
+    },
+    {
+      "colour":"YELLOW",
+      "x":800.0,
+      "y":1239.0
+    },
+    {
+      "colour":"YELLOW",
+      "x":348.0,
+      "y":1151.0
+    },
+    {
+      "colour":"RED",
+      "x":92.0,
+      "y":402.0
+    },
+    {
+      "colour":"RED",
+      "x":293.0,
+      "y":946.0
+    }
+  ],
+  "winArea":[
+    {
+      "type":"rectangle",
+      "left":483.0,
+      "top":621.0,
+      "right":558.0,
+      "bottom":918.0
+    },
+    {
+      "type":"rectangle",
+      "left":667.0,
+      "top":1320.0,
+      "right":720.0,
+      "bottom":1802.0
+    }
+  ],
+  "rockSequence": [
+    {
+      "colour":"RED",
+      "x":607.0,
+      "y":955.0
+    }
+  ],
+  "infoDescription": {
+    "description": "You have two yellow rocks surrounding the other team's red rock on the button. The other team just threw their last rock heavy, shown at the top of the screen. Where do you position your rock to capitalize and take control of both sides of the house?"
+  },
+  "solutionDescription": {
+    "description": "Placing your rock on top of the red, parallel to the other yellow allows you to control both the left and the right side of the house, setting up for you to try to move the red rock out from either side on your next turn."
+  }
+}
