@@ -73,7 +73,7 @@ class PuzzleComplete: AppCompatActivity() {
         congratsLevelTextView.text = "Level $puzzleID ($difficulty) complete."
 
         val solutionDescriptionTextView = findViewById<TextView>(R.id.solutionDescriptionText)
-        solutionDescriptionTextView.text = solutionDesc
+        solutionDescriptionTextView.text = "Explanation:\n\n$solutionDesc"
 
         val starInfoTextView = findViewById<TextView>(R.id.starProgress)
         val totalStars = updateTotalStars(preferences)

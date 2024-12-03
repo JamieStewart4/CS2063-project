@@ -23,14 +23,14 @@
         android:id="@+id/congratulationsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_below="@id/back_button"
         android:fontFamily="@font/aldrich"
         android:typeface="monospace"
         android:layout_centerHorizontal="true"
         android:text="@string/congratulations_text"
         android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textSize="28sp"
         android:textStyle="bold" />
 
     <TextView
@@ -38,31 +38,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
         android:layout_below="@id/congratulations_info"
         android:fontFamily="@font/aldrich"
         android:typeface="monospace"
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="18sp"/>
+        android:textSize="16sp"/>
 
     <TextView
         android:id="@+id/congratulations_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/congratulationsText"
         android:text="@string/congratulations_info"
         android:fontFamily="@font/aldrich"
         android:typeface="monospace"
         android:textColor="@color/black"
-        android:textSize="20sp" />
+        android:textSize="24sp" />
 
     <ImageView
         android:id="@+id/star_large"
-        android:layout_width="match_parent"
-        android:layout_height="223dp"
+        android:layout_width="380dp"
+        android:layout_height="205dp"
         android:layout_centerInParent="true"
         app:srcCompat="@drawable/star" />
 
@@ -70,6 +72,7 @@
         android:id="@+id/starProgress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:layout_marginBottom="64dp"
         android:gravity="center"
         android:layout_below="@id/star_large"
@@ -85,6 +88,7 @@
         android:id="@+id/congratulations_buttons"
         android:layout_width="445dp"
         android:layout_height="142dp"
+        android:layout_marginTop="40dp"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/star_large"
@@ -95,8 +99,8 @@
             android:id="@+id/puzzleCreatorButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="18dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginStart="20dp"
             android:backgroundTint="@color/button"
             android:drawablePadding="8dp"
             android:fontFamily="@font/aldrich"
@@ -115,6 +119,8 @@
             android:fontFamily="@font/aldrich"
             android:text="@string/next_level"
             android:textColor="@color/white"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:textSize="16sp"
             android:typeface="monospace" />
     </LinearLayout>

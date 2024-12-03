@@ -36,6 +36,7 @@ class PuzzleMode: AppCompatActivity() {
     private var puzzleId = -1
     // List of rocks drawn on screen
     private var rockList = mutableListOf<RockReader.Rock>()
+    private var rockViewList = mutableListOf<ImageView>()
     // List of win areas for this puzzle
     private lateinit var winAreaList: List<RockReader.WinArea>
     // Current active win area
@@ -210,6 +211,7 @@ class PuzzleMode: AppCompatActivity() {
         } else if (rock.colour == RockReader.Colour.YELLOW) {
             newRock.setImageDrawable(yellowRockDrawable)
         }
+        rockViewList.add(newRock)
         return newRock
     }
 
@@ -413,8 +415,14 @@ class PuzzleMode: AppCompatActivity() {
         checkmark.visibility = ImageView.VISIBLE
         checkmark.bringToFront()
 
+        val layout = findViewById<RelativeLayout>(R.id.puzzle_relative_layout)
+
         val nextRock = rockSequence[currentRockSequence - 1]
+
         rockList.add(nextRock)
+        val newRock = createImageViewFromRock(nextRock)
+        layout.addView(newRock)
+
 
         // Move exclamation mark to newly added rock in sequence to indicate update
         exclamationMark.x = (nextRock.x.toFloat() + rockWidth / 1.5).toFloat()
@@ -423,10 +431,6 @@ class PuzzleMode: AppCompatActivity() {
         exclamationMark.bringToFront()
 
         checkIndicatorCollision(nextRock)
-
-        val newRock = createImageViewFromRock(nextRock)
-        val layout = findViewById<RelativeLayout>(R.id.puzzle_relative_layout)
-        layout.addView(newRock)
 
         // Create moveable rock
         moveRock = RockReader.Rock(RockReader.Colour.YELLOW, 475.0, 1900.0)

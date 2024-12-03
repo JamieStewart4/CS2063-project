@@ -8,7 +8,7 @@
     <string name="congratulations_text">Congratulations!</string>
     <string name="congratulations_info">Level complete.</string>
     <string name="star_progress">2/27 total stars achieved.</string>
-    <string name="try_in_free_play">Try Free Play</string>
+    <string name="try_in_free_play">Retry Level</string>
     <string name="next_level">Next Level</string>
     <string name="check_button">Check</string>
     <string name="info_button">Info</string>
