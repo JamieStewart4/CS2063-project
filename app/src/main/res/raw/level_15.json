@@ -1,0 +1,62 @@
+{
+  "rocks":[
+    {
+      "colour":"YELLOW",
+      "x":503.0,
+      "y":1524.0
+    },
+    {
+      "colour":"RED",
+      "x":612.0,
+      "y":804.0
+    },
+    {
+      "colour":"RED",
+      "x":630.0,
+      "y":469.0
+    },
+    {
+      "colour":"YELLOW",
+      "x":524.0,
+      "y":553.0
+    },
+    {
+      "colour":"RED",
+      "x":34.0,
+      "y":519.0
+    },
+    {
+      "colour":"YELLOW",
+      "x":109.0,
+      "y":1440.0
+    },
+    {
+      "colour":"RED",
+      "x":783.0,
+      "y":1378.0
+    },
+    {
+      "colour":"YELLOW",
+      "x":398.0,
+      "y":76.0
+    }
+  ],
+  "winArea":[
+    {
+      "type":"rectangle",
+      "left":455.0,
+      "top":500.0,
+      "right":554.0,
+      "bottom":598.0
+    }
+  ],
+  "rockSequence": [
+
+  ],
+  "infoDescription": {
+    "description": "This is the last end and you must steal a point to win. You have one more rock left without hammer. Your opponent currently has two shots to win. How do you block both potential shots with one rock?"
+  },
+  "solutionDescription": {
+    "description": "Placing your rock tucked behind the other yellow rock gives it backing so it cannot be removed by either raising the top red or coming around the guard and tapping it. This essentially guarantees a steal."
+  }
+}

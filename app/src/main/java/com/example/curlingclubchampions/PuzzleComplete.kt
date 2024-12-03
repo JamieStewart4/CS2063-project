@@ -44,11 +44,20 @@ class PuzzleComplete: AppCompatActivity() {
             }
         }
 
-        val levelCreatorButton = findViewById<Button>(R.id.puzzleCreatorButton)
-        levelCreatorButton.setOnClickListener {
+        val retryButton = findViewById<Button>(R.id.puzzleCreatorButton)
+        retryButton.setOnClickListener {
+            val intent = Intent(this@PuzzleComplete, PuzzleMode::class.java)
+            finish()
+            intent.putExtra("PUZZLE_ID", puzzleID)
+            startActivity(intent)
+        }
+
+        // Hold retry button to go to level creator
+        retryButton.setOnLongClickListener {
             val intent = Intent(this@PuzzleComplete, PuzzleCreator::class.java)
             finish()
             startActivity(intent)
+            true
         }
 
         // Back button (goes back to select mode screen for demo)
