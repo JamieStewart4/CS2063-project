@@ -25,6 +25,12 @@ class MediumFragment : Fragment() {
 
         val preferences = requireContext().getSharedPreferences("level_status", Context.MODE_PRIVATE)
 
+        val buttonLevel6 = view.findViewById<Button>(R.id.level_6)
+        buttonLevel6.setOnClickListener {
+            startPuzzleMode(6)
+        }
+        updateButtonStatus(preferences, buttonLevel6, 6.toString())
+
         val buttonLevel7 = view.findViewById<Button>(R.id.level_7)
         buttonLevel7.setOnClickListener {
             startPuzzleMode(7)
@@ -48,18 +54,6 @@ class MediumFragment : Fragment() {
             startPuzzleMode(10)
         }
         updateButtonStatus(preferences, buttonLevel10, 10.toString())
-
-        val buttonLevel11 = view.findViewById<Button>(R.id.level_11)
-        buttonLevel11.setOnClickListener {
-            startPuzzleMode(11)
-        }
-        updateButtonStatus(preferences, buttonLevel11, 11.toString())
-
-        val buttonLevel12 = view.findViewById<Button>(R.id.level_12)
-        buttonLevel12.setOnClickListener {
-            startPuzzleMode(12)
-        }
-        updateButtonStatus(preferences, buttonLevel12, 12.toString())
 
         return view
     }

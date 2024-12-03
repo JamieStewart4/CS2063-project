@@ -55,12 +55,6 @@ class EasyFragment : Fragment() {
         }
         updateButtonStatus(preferences, buttonLevel5, 5.toString())
 
-        val buttonLevel6 = view.findViewById<Button>(R.id.level_6)
-        buttonLevel6.setOnClickListener {
-            startPuzzleMode(6)
-        }
-        updateButtonStatus(preferences, buttonLevel6, 6.toString())
-
         return view
     }
 

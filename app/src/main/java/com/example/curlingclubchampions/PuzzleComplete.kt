@@ -13,7 +13,7 @@ import androidx.core.content.ContextCompat
 class PuzzleComplete: AppCompatActivity() {
 
     private var puzzleID = 0
-    private var numLevels = 18
+    private var numLevels = 15
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,11 +60,11 @@ class PuzzleComplete: AppCompatActivity() {
         }
 
         var difficulty = "none"
-        if (puzzleID in 1..6) {
+        if (puzzleID in 1..5) {
             difficulty = "Easy"
-        } else if (puzzleID in 7..12) {
+        } else if (puzzleID in 6..10) {
             difficulty = "Medium"
-        } else if (puzzleID in 13..18) {
+        } else if (puzzleID in 11..15) {
             difficulty = "Hard"
         }
 
@@ -73,12 +73,12 @@ class PuzzleComplete: AppCompatActivity() {
 
         val starInfoTextView = findViewById<TextView>(R.id.starProgress)
         val totalStars = updateTotalStars(preferences)
-        starInfoTextView.text = "$totalStars/18 total stars achieved."
+        starInfoTextView.text = "$totalStars/15 total stars achieved."
     }
 
     private fun updateTotalStars(preferences: SharedPreferences): Int {
         var totalStars = 0
-        for (i in 1..18) {
+        for (i in 1..numLevels) {
             val status = preferences.getBoolean(i.toString(), false)
             if (status) {
                 totalStars++

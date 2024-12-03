@@ -25,6 +25,18 @@ class HardFragment : Fragment() {
 
         val preferences = requireContext().getSharedPreferences("level_status", Context.MODE_PRIVATE)
 
+        val buttonLevel11 = view.findViewById<Button>(R.id.level_11)
+        buttonLevel11.setOnClickListener {
+            startPuzzleMode(11)
+        }
+        updateButtonStatus(preferences, buttonLevel11, 11.toString())
+
+        val buttonLevel12 = view.findViewById<Button>(R.id.level_12)
+        buttonLevel12.setOnClickListener {
+            startPuzzleMode(12)
+        }
+        updateButtonStatus(preferences, buttonLevel12, 12.toString())
+
         val buttonLevel13 = view.findViewById<Button>(R.id.level_13)
         buttonLevel13.setOnClickListener {
             startPuzzleMode(13)
@@ -42,24 +54,6 @@ class HardFragment : Fragment() {
             startPuzzleMode(15)
         }
         updateButtonStatus(preferences, buttonLevel15, 15.toString())
-
-        val buttonLevel16 = view.findViewById<Button>(R.id.level_16)
-        buttonLevel16.setOnClickListener {
-            startPuzzleMode(16)
-        }
-        updateButtonStatus(preferences, buttonLevel16, 16.toString())
-
-        val buttonLevel17 = view.findViewById<Button>(R.id.level_17)
-        buttonLevel17.setOnClickListener {
-            startPuzzleMode(17)
-        }
-        updateButtonStatus(preferences, buttonLevel17, 17.toString())
-
-        val buttonLevel18 = view.findViewById<Button>(R.id.level_18)
-        buttonLevel18.setOnClickListener {
-            startPuzzleMode(18)
-        }
-        updateButtonStatus(preferences, buttonLevel18, 18.toString())
 
         return view
     }

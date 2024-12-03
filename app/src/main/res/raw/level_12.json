@@ -50,9 +50,9 @@
     }
   ],
   "infoDescription": {
-    "description": "You have two yellow rocks surrounding the other team's red rock on the button. The other team just threw their last rock heavy, shown at the top of the screen. Where do you position your rock to capitalize and take control of both sides of the house?"
+    "description": "You have two rocks left without hammer. You need to steal a point this end. Position your rocks to give yourself the highest chance of stealing!"
   },
   "solutionDescription": {
-    "description": "Placing your rock on top of the red, parallel to the other yellow allows you to control both the left and the right side of the house, setting up for you to try to move the red rock out from either side on your next turn."
+    "description": "Blocking the hole for the red rock tap on the right side gives you the highest chance of stealing the end. The only shot the red team has is the very difficult runback on the center line."
   }
 }
